@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="styles.css" />
+
+<div class="container-fluid boxContainer">
+
+    <ul class="list">
+            
+                <h4>Customer List</h4>
+            
+        <% customers.forEach(cust =>{ %> 
+                <li class=""><a href="customers/<%=cust._id%>"><%=cust.name %></a></li>
+        <% }) %> 
+</ul>
+
+        <div class="container customerInfoBox">
+            <div class="jumbotron">
+              <h3>Click a customer for more information </h3>
+            </div>
+          </div>
+</div>
