@@ -1,19 +1,28 @@
 
-
 <div class="container-fluid row">
 
-    <ul class="col-md-2 list">
+    <ul class="col-md-2 list-group">
             
                 <h4>Customer List</h4>
             
         <% customers.forEach(cust =>{ %> 
-                <li class=""><a href="/customers/<%=cust._id%>"><%=cust.name %></a></li>
+                <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown">
+                                <%=cust.name %>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/customers/<%=cust._id%>">View Customer</a></li>
+                        </ul>
+                      </div>
         <% }) %> 
 </ul>
 
-        <div class="col-md-10 container">
+
+
+        <div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
             <div class="jumbotron">
-              <h3>Click a customer for more information </h3>
+              <h3>Customer Summary Dashboard</h3>
+              <h5>Customer Total: <%=customers.length%></h5>
             </div>
           </div>
 </div>

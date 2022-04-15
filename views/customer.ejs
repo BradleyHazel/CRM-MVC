@@ -1,17 +1,25 @@
 
 
-<div class="container-fluid row">
+<div class="container-fluid ">
 
-    <ul class="col-md-2 list">
+    <ul class="col-md-6 list">
             
-                <h4>Selected Customer: <a href="/customers/<%=customer._id%>"><%=customer.name %></a></h4>
-                <h5><a href="/customers/">Click here to go back to the customer list</a></h5>
+                <h6>Selected Customer: <a href="/customers/<%=customer._id%>">
+                        <%=customer.name %></a>
+                <h6></h6>
  
 </ul>
 
-        <div class="col-md-10 container">
-            <div class="jumbotron">
-              <h3>Click a customer for more information </h3>
-            </div>
-          </div>
+          <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white sticky-top">
+                <div class="jumbotron">
+                  <h3>Customer Summary Dashboard</h3>
+                  <div class="card" style="width:200px">
+                        <img class="card-img-top" src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title text-black">Name: <%=customer.name %></h4>
+                          <p class="card-text text-black">Email: <%=customer.email %></p>
+                        </div>
+                      </div>
+                </div>
+              </div>
 </div>

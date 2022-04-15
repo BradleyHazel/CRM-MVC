@@ -11,6 +11,13 @@ router.get("/", (req, res, next) => {
       .catch(next);
   });
 
+  router.get("/add", (req, res, next) => {
+    Customer.find({})
+        .then(customers => {
+          res.render('add',{customers})})
+        .catch(next);
+    });
+
 router.get("/:id", (req, res, next) => {
   
   let customers = Customer.find({});
@@ -22,7 +29,7 @@ router.get("/:id", (req, res, next) => {
     .catch(console.error);
   });
 
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
   Customer.create(req.body).then(res.redirect("/customers"))
   });
 
