@@ -4,11 +4,9 @@
 
     <ul class="col-md-2 list">
             
-                <h4>Customer List</h4>
-            
-        <% customers.forEach(cust =>{ %> 
-                <li class=""><a href="/customers/<%=cust._id%>"><%=cust.name %></a></li>
-        <% }) %> 
+                <h4>Selected Customer: <a href="/customers/<%=customer._id%>"><%=customer.name %></a></h4>
+                <h5><a href="/customers/">Click here to go back to the customer list</a></h5>
+ 
 </ul>
 
         <div class="col-md-10 container">

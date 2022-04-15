@@ -12,9 +12,12 @@ router.get("/", (req, res, next) => {
   });
 
 router.get("/:id", (req, res, next) => {
+  
+  let customers = Customer.find({});
+
   Customer.findById(req.params.id)
     .then((customer) => {
-      res.send(customer);
+      res.render(`customer`,{customer});
     })
     .catch(console.error);
   });
