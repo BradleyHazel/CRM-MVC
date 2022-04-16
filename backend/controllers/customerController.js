@@ -35,7 +35,7 @@ router.post("/add", (req, res) => {
 
 router.put("/:customerId", (req, res) => {
   Customer.findOneAndUpdate({_id:req.params.customerId},req.body,{ new: true }).then(() => {
-    res.redirect("/customers");
+    res.redirect(`/customers/${req.params.customerId}`);
   })
   .catch(console.error);
 });

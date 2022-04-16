@@ -26,17 +26,29 @@
   
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">Edit Customer</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
   
         <!-- Modal body -->
         <div class="modal-body">
-          Modal body..
+         
+
+          <form action="/customers/<%=customer._id%>/?_method=put" method="POST">
+    
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" value="<%=customer.name%>">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" class="form-control" value="<%=customer.email%>">
+            </div>
+
+            
         </div>
   
         <!-- Modal footer -->
         <div class="modal-footer">
+          <input type="submit" value="Update Customer" class="btn btn-primary" />
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
   

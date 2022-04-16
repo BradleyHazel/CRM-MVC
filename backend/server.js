@@ -27,3 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const customerController = require('./controllers/customerController.js');
 app.use('/customers', customerController);
+
+app.get('/',(req,res)=>{
+  res.redirect('/customers')
+})
