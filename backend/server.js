@@ -3,15 +3,17 @@ const cors = require('cors')
 const methodOverride = require("method-override")
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
-const port = 3000
+
 app.use(ejsLayouts);
 
 app.use(cors())
 app.use(methodOverride('_method'))
 app.set("view engine", "ejs")
 
-app.listen(port, () => {
-  console.log(`Listening on port: ${port}`);
+app.set("port", process.env.PORT || 8000);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });
 
 app.use(express.static('public')); 
