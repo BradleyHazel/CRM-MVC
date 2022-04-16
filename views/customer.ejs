@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid ">
 
     <ul class="col-md-6 list">
@@ -50,6 +48,7 @@
         <div class="modal-footer">
           <input type="submit" value="Update Customer" class="btn btn-primary" />
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </form>
         </div>
   
       </div>
@@ -69,13 +68,7 @@
                           <h4 class="card-title text-black">Name: <%=customer.name %></h4>
                           <p class="card-text text-black">Email: <%=customer.email %></p>
 
-                    
-
-
-
-
-                        <form action="/customers/<%=customer._id%>/?_method=delete" method="POST">
-                          <button>Delete</button>
+                  
                           </form>
                         </div>
                       </div>
@@ -83,3 +76,45 @@
               </div>
 </div>
 
+<div style="text-align: center;">
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >
+ Delete Customer
+</button>
+
+
+
+</div>
+
+
+
+<div class="modal" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Are you sure you want to delete the customer?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       
+
+     <form action="/customers/<%=customer._id%>?_method=DELETE" method="POST" class="d-inline">
+  <input type="submit" value="Yes" class="btn btn-danger" />
+</form>
+
+<button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+          
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+    </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

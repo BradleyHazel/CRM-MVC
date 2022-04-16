@@ -31,6 +31,15 @@ router.get("/:id", (req, res, next) => {
 
 router.post("/add", (req, res) => {
   Customer.create(req.body).then(res.redirect("/customers"))
+
+  
+  });
+
+
+  router.delete("/:customerId", (req, res) => {
+    Customer.findOneAndDelete({_id:req.params.customerId},()=>{
+      res.redirect("/customers");
+  })
   });
 
 router.put("/:customerId", (req, res) => {
@@ -41,11 +50,7 @@ router.put("/:customerId", (req, res) => {
 });
 
 
-router.delete("/:customerId", (req, res) => {
-  Customer.findOneAndDelete({_id:req.params.customerId},()=>{
-    res.redirect("/customers");
-})
-});
+
 
   const gifController = router
   module.exports = gifController;
