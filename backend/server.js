@@ -18,11 +18,7 @@ app.listen(app.get("port"), () => {
   console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });
 
-app.use(express.static('public')); 
-
-//const methodOverride = require('method-override');
-
-//app.use(methodOverride('_method'));
+app.use(express.static('public'))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));

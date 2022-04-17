@@ -3,7 +3,7 @@
 <div class="container-fluid ">
   <div style="text-align:center"> 
     <div>&nbsp;</div>
-  <button type="button" class="btn btn-primary"><a href="/customers" style="color:white; text-decoration: none;">Back to Customer List</a></button>
+  <button type="button" class="btn btn-primary"><a href="/customers" >Back to Customer List</a></button>
 </div>
 
 <div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
@@ -12,14 +12,36 @@
 
     <form action='/customers/add' method='POST'>
 
-      <div class="mb-3">
-        <label for="name" class="form-label">Name:</label>
-        <input type="name" class="form-control" id="name" placeholder="Enter customer name" name="name">
+      <div class="mb-3 col-md-12">
+        <div class="row col-md-4" style="display:inline-block">
+            <label for="name" class="form-label text-black" style="display:inline-block">Name:</label>
+          <input type="name" class="form-control text-black" id="name" placeholder="Enter name" name="name" style="display:inline">
+          <label for="address" class="form-label text-black">Address:</label>
+          <input type="address" class="form-control" id="address" placeholder="Enter address" name="address">
+          <label for="zip" class="form-label text-black">Zip Code:</label>
+          <input type="zip" class="form-control" id="zip" placeholder="Enter Zip Code" name="zip">
+        </div>
+        <div class="row col-md-4" style="display:inline-block; ">
+          <label for="email" class="form-label text-black" style="display:inline-block">Email:</label>
+        <input type="email" class="form-control text-black" id="email" placeholder="Enter email" name="email" style="display:inline">
+        <label for="phone" class="form-label text-black">Phone:</label>
+        <input type="phone" class="form-control" id="phone" placeholder="Enter phone" name="phone">
+        <label for="notes" class="form-label text-black">Notes:</label>
+        <input type="notes" class="form-control" id="notes" placeholder="Enter notes" name="notes">
+      </div>
+      <div class="row col-md-4" style="display:inline-block">
+        <label for="website" class="form-label text-black" style="display:inline-block">Website:</label>
+      <input type="website" class="form-control text-black" id="website" placeholder="Enter website" name="website" style="display:inline">
+      <label for="city" class="form-label text-black">City:</label>
+      <input type="city" class="form-control" id="city" placeholder="Enter City" name="city">
+      <label for="photo" class="form-label text-black">Photo URL:</label>
+      <input type="photo" class="form-control" id="photo" placeholder="Enter photo URL" name="photo">
+    </div>
+        
       </div>
 
       <div class="mb-3 mt-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
