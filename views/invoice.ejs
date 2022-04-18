@@ -3,8 +3,8 @@
 
     <ul class="col-md-6 list">
             
-                <h6>Selected Customer: <a href="/customers/<%= data.customers._id %>">
-                        <%=data.customers.name %></a>
+                <h6>Selected customer: <a href="/invoice/<%= invoice._id %>">
+                        <%=invoice.customer %></a>
                 <h6></h6>
  
 </ul>
@@ -16,40 +16,35 @@
           <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white sticky-top">
 
                 <div class="jumbotron">
-                  <h3 >Customer Summary Dashboard</h3>
+                  <h3 >Invoice Details</h3>
                   <div style="display: flex; flex-direction: row;">
-                  <div class="card col-sm-2" style="width:100px" >
-                        <img class="card-img-top"  src="<%= (data.customers.photo ? data.customers.photo : 'https://www.w3schools.com/bootstrap5/img_avatar1.png') %>" alt="Card image">
-                        <div class="card-body" >
-                          <h5 class="card-title text-black"> Name: <%=data.customers.name %></h5>
-                  
-                        </div>
-                        
-                      </div>
                       <div class="col-sm-10" style="display: inline-block">
                         <div style="display: inline">
                       <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black ">Email: <%=data.customers.email %></div>
-                        <div class="col-sm-4 text-black">Phone: <%=data.customers.phone %></div>
-                        <div class="col-sm-4 text-black">Website: <a href="<%=data.customers.website %>"><%=data.customers.website %></a></div>
+                        <div class="col-sm-4 text-black ">Customer: <%=invoice.customer %></div>
+                        <div class="col-sm-4 text-black">Amount: <%=invoice.amount %></div>
+                        <div class="col-sm-4 text-black">Due Date: <a href="<%=invoice.dueDate %>"><%=invoice.dueDate %></a></div>
                       </div>
                       &nbsp
                       <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">Address: <%=data.customers.address %></div>
-                        <div class="col-sm-4 text-black ">City: <%=data.customers.city %></div>
-                        <div class="col-sm-4 text-black">Zip Code: <%=data.customers.zip %></div>
+                        <div class="col-sm-4 text-black">Invoice Date: <%=invoice.invoiceDate %></div>
+                        <div class="col-sm-4 text-black ">Contact Name: <%=invoice.contactName %></div>
+                        <div class="col-sm-4 text-black">Contact Number: <%=invoice.contactNumber %></div>
                       </div>
                       &nbsp
                       <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">Notes: <%=data.customers.notes %></div>
-                        <div class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></div>
+                        <div class="col-sm-4 text-black">Paid: <%=invoice.paid %></div>
+                        <div class="col-sm-4 text-black">Billing Address: <%=invoice.billingAddress %></div>
+                        <div class="col-sm-4 text-black">Invoice Line Items: <%=invoice.invoiceLineItems %></div>
                         </div>
                         <div class="row" style="padding-top: 20px;"></div>
-                        <div style="padding-left: 20px;" class="text-black">Invoices: </div>
-                        <%let invNum =1; data.invoices[0].forEach(inv =>{ %> 
-                          <div class="col-sm-4 text-black"><a href="/invoices/<%= inv._id %>">invoice #: <%=invNum%></a></div>
-                          <% invNum++})%> 
-                        <div class="col-sm-4 text-black"></div>
+                        &nbsp
+                      <div class="row" style="padding-left: 20px;">
+                        <div class="col-sm-4 text-black">Memo: <%=invoice.memo %></div>
+                        <div class="col-sm-4 text-black">Created Date: <%=invoice.createdDate %></div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;"></div>
+                        
                       </div>
                     </div>
                     
@@ -65,11 +60,11 @@
 
                 <div style="text-align:center; "> 
                   <!-- Button to Open the Modal -->
-                  <button type="button" class="btn btn-primary"><a href="/customers/list" style="color:white; text-decoration: none;">Back to Customer List</a></button>
+                  <button type="button" class="btn btn-primary"><a href="/invoices/list" style="color:white; text-decoration: none;">Back to invoice List</a></button>
                 
                 
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
-                    Edit Customer
+                    Edit invoice
                   </button>
                   
                   <!-- The Modal -->
@@ -79,7 +74,7 @@
                   
                         <!-- Modal Header -->
                         <div class="modal-header">
-                          <h4 class="modal-title">Edit Customer</h4>
+                          <h4 class="modal-title">Edit invoice</h4>
                           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                   
@@ -87,30 +82,30 @@
                         <div class="modal-body">
                          
                 
-                          <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
+                          <form action="/invoices/<%=invoice._id%>/?_method=put" method="POST">
                     
                             <div class="form-group">
                                 <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" class="form-control" value="<%=data.customers.name%>">
+                                <input type="text" id="name" name="name" class="form-control" value="<%=invoice.name%>">
                                 <label for="email">Email:</label>
-                                <input type="text" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
+                                <input type="text" id="email" name="email" class="form-control" value="<%=invoice.email%>">
 
                                 <label for="phone">Phone:</label>
-                                <input type="text" id="phone" name="phone" class="form-control" value="<%=data.customers.phone%>">
+                                <input type="text" id="phone" name="phone" class="form-control" value="<%=invoice.phone%>">
                                 <label for="website">Website:</label>
-                                <input type="text" id="website" name="website" class="form-control" value="<%=data.customers.website%>">
+                                <input type="text" id="website" name="website" class="form-control" value="<%=invoice.website%>">
 
                                 <label for="address">Address:</label>
-                                <input type="text" id="address" name="address" class="form-control" value="<%=data.customers.address%>">
+                                <input type="text" id="address" name="address" class="form-control" value="<%=invoice.address%>">
                                 <label for="city">City:</label>
-                                <input type="text" id="city" name="city" class="form-control" value="<%=data.customers.city%>">
+                                <input type="text" id="city" name="city" class="form-control" value="<%=invoice.city%>">
 
                                 <label for="zip">Zip Code:</label>
-                                <input type="text" id="zip" name="zip" class="form-control" value="<%=data.customers.zip%>">
+                                <input type="text" id="zip" name="zip" class="form-control" value="<%=invoice.zip%>">
                                 <label for="notes">Notes:</label>
-                                <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
+                                <input type="text" id="notes" name="notes" class="form-control" value="<%=invoice.notes%>">
                                 <label for="photo">Photo Url:</label>
-                                <input type="text" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
+                                <input type="text" id="photo" name="photo" class="form-control" value="<%=invoice.photo%>">
                             </div>
                             
                             
@@ -118,7 +113,7 @@
                   
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                          <input type="submit" value="Update Customer" class="btn btn-primary" />
+                          <input type="submit" value="Update invoice" class="btn btn-primary" />
                           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       </form>
                         </div>
@@ -128,7 +123,7 @@
                   </div>
                 
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >
-                     Delete Customer
+                     Delete invoice
                     </button>
                     
                     
@@ -141,7 +136,7 @@
                     
                           <!-- Modal Header -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Are you sure you want to delete the customer?</h4>
+                            <h4 class="modal-title">Are you sure you want to delete the invoice?</h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                           </div>
                     
@@ -149,7 +144,7 @@
                           <div class="modal-body">
                            
                     
-                         <form action="/customers/<%=data.customers._id%>?_method=DELETE" method="POST" class="d-inline">
+                         <form action="/invoices/<%=invoice._id%>?_method=DELETE" method="POST" class="d-inline">
                       <input type="submit" value="Yes" class="btn btn-danger" />
                     </form>
                     

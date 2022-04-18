@@ -1,0 +1,33 @@
+
+<div class="container-fluid ">
+    
+              <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white sticky-top">
+    
+                    <div class="jumbotron">
+                        <div class="container-fluid row">
+
+                                <ul class="col-md-12 list-group">
+                                        
+                                            <h4>Invoice List</h4>
+                                        
+                                    <% invoices.forEach(inv =>{ %> 
+                                            <div class="dropdown">
+                                                    <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
+                                                            <%=inv.customer %> $<%=inv.amount %>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                      <li><a class="dropdown-item" href="/invoices/<%=inv._id%>">View Invoice</a></li>
+                                                    </ul>
+                                                  </div>
+                                    <% }) %> 
+                            </ul>
+                            
+                            
+                            </div>
+    </div>
+    
+                    </div>
+                    </div>
+                    </div>
+    
+    

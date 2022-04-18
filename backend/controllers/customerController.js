@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const Customer = require('../models/customer-model.js')
-
+const Invoice = require('../models/invoice-model')
 
 // Index: GET all the Customers
 router.get("/", (req, res, next) => {
@@ -11,6 +11,13 @@ router.get("/", (req, res, next) => {
       .catch(next);
   });
 
+  router.get("/list", (req, res, next) => {
+    Customer.find({})
+        .then(customers => {
+          res.render('customerindex',{customers})})
+        .catch(next);
+    });
+
   router.get("/add", (req, res, next) => {
     Customer.find({})
         .then(customers => {
@@ -19,12 +26,16 @@ router.get("/", (req, res, next) => {
     });
 
 router.get("/:id", (req, res, next) => {
-  
-  let customers = Customer.find({});
-
+  let invoices =[]
   Customer.findById(req.params.id)
-    .then((customer) => {
-      res.render(`customer`,{customer});
+    .then((customers) => {
+      Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
+    
+        let data = {"customers":customers,"invoices":invoices}
+        res.render(`customer`,{data});
+      })
+      
+      
     })
     .catch(console.error);
   });
@@ -76,5 +87,5 @@ router.put("/:customerId", (req, res) => {
 
 
 
-  const gifController = router
-  module.exports = gifController;
+  const customerController = router
+  module.exports = customerController;
