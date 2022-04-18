@@ -4,7 +4,7 @@ const Invoice = require('../models/invoice-model')
 
 
 // Index: GET all the Invoices
-router.get("/", (req, res, next) => {
+router.get("/list", (req, res, next) => {
   Invoice.find({})
       .then(invoices => {
         res.render('invoiceIndex',{invoices})})
