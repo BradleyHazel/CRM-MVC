@@ -4,6 +4,16 @@ const Customer = require('../models/customer-model.js')
 const Invoice = require('../models/invoice-model')
 
 // Index: GET all the Customers
+
+
+
+router.get("/list", (req, res, next) => {
+  Customer.find({})
+      .then(customers => {
+        res.render('customerIndex',{customers})})
+      .catch(next);
+  });
+
 router.get("/", (req, res, next) => {
   Customer.find({})
       .then(customers => {
@@ -11,12 +21,7 @@ router.get("/", (req, res, next) => {
       .catch(next);
   });
 
-  router.get("/list", (req, res, next) => {
-    Customer.find({})
-        .then(customers => {
-          res.render('customerindex',{customers})})
-        .catch(next);
-    });
+
 
   router.get("/add", (req, res, next) => {
     Customer.find({})
