@@ -42,7 +42,7 @@
                       &nbsp
                       <div class="row" style="padding-left: 20px;">
                         <div class="col-sm-4 text-black">Notes: <%=customer.notes %></div>
-                        <div class="col-sm-4 text-black">Customer Since: <%=customer.customerSince %></div>
+                        <div class="col-sm-4 text-black">Created date: <%=customer.createdDate %></div>
                         <div class="col-sm-4 text-black"></div>
                       </div>
                     </div>
@@ -98,6 +98,13 @@
                                 <input type="text" id="address" name="address" class="form-control" value="<%=customer.address%>">
                                 <label for="city">City:</label>
                                 <input type="text" id="city" name="city" class="form-control" value="<%=customer.city%>">
+
+                                <label for="zip">Zip Code:</label>
+                                <input type="text" id="zip" name="zip" class="form-control" value="<%=customer.zip%>">
+                                <label for="notes">Notes:</label>
+                                <input type="text" id="notes" name="notes" class="form-control" value="<%=customer.notes%>">
+                                <label for="photo">Photo Url:</label>
+                                <input type="text" id="photo" name="photo" class="form-control" value="<%=customer.photo%>">
                             </div>
                 
                             

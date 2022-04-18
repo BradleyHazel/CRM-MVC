@@ -11,7 +11,7 @@ const customerSchema = new mongoose.Schema({
   photo:{type:String},
   notes:{type:String},
   website:{type:String},
-  customerSince:{type:Date}
+  createdDate:{type:String}
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

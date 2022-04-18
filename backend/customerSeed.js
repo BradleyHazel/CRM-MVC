@@ -1,4 +1,4 @@
-const Customer = require('../models/customer-model.js')
+const Customer = require('./models/customer-model.js')
 
 const seedData = require('./customerSeed.json')
 
