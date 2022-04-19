@@ -43,6 +43,7 @@
                       <div class="row" style="padding-left: 20px;">
                         <div class="col-sm-4 text-black">Notes: <%=data.customers.notes %></div>
                         <div class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></div>
+                        <div class="col-sm-4 text-black">Country: <%=data.customers.country %></div>
                         </div>
                         <div class="row" style="padding-top: 20px;"></div>
                         <div style="padding-left: 20px;" class="text-black">Invoices: </div>
@@ -105,6 +106,8 @@
                                 <label for="city">City:</label>
                                 <input type="text" id="city" name="city" class="form-control" value="<%=data.customers.city%>">
 
+                                <label for="country">Country:</label>
+                                <input type="text" id="country" name="country" class="form-control" value="<%=data.customers.country%>">
                                 <label for="zip">Zip Code:</label>
                                 <input type="text" id="zip" name="zip" class="form-control" value="<%=data.customers.zip%>">
                                 <label for="notes">Notes:</label>
