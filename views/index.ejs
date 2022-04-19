@@ -5,7 +5,7 @@
             
                 <h4>Customer List</h4>
             
-        <% customers.forEach(cust =>{ %> 
+        <% data.customers.forEach(cust =>{ %> 
                 <div class="dropdown">
                         <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                                 <%=cust.name %>
@@ -22,7 +22,9 @@
         <div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
             <div class="jumbotron">
               <h3>Customer Summary Dashboard</h3>
-              <h5>Customer Total: <%=customers.length%></h5>
+              <h5>Customer Total: <%=data.customers.length%></h5>
+              <h5>Invoice Total: <%=data.invoices[0].length%></h5>
+              
             </div>
           </div>
 </div>

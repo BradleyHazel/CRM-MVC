@@ -83,31 +83,46 @@
                           <form action="/invoices/<%=invoice._id%>/?_method=put" method="POST">
                     
                             <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" class="form-control" value="<%=invoice.name%>">
-                                <label for="email">Email:</label>
-                                <input type="text" id="email" name="email" class="form-control" value="<%=invoice.email%>">
+                                <label for="customer">Customer:</label>
+                                <input type="text" id="customer" name="customer" class="form-control" value="<%=invoice.customer%>">
+                                <label for="amount">Amount:</label>
+                                <input type="text" id="amount" name="amount" class="form-control" value="<%=invoice.amount%>">
 
-                                <label for="phone">Phone:</label>
-                                <input type="text" id="phone" name="phone" class="form-control" value="<%=invoice.phone%>">
-                                <label for="website">Website:</label>
-                                <input type="text" id="website" name="website" class="form-control" value="<%=invoice.website%>">
+                                <label for="dueDate">Due Date:</label>
+                                <input type="text" id="dueDate" name="dueDate" class="form-control" value="<%=invoice.dueDate%>">
+                                <label for="invoiceDate">Invoice Date:</label>
+                                <input type="text" id="invoiceDate" name="invoiceDate" class="form-control" value="<%=invoice.invoiceDate%>">
 
-                                <label for="address">Address:</label>
-                                <input type="text" id="address" name="address" class="form-control" value="<%=invoice.address%>">
-                                <label for="city">City:</label>
-                                <input type="text" id="city" name="city" class="form-control" value="<%=invoice.city%>">
+                                <label for="contactName">Contact Name:</label>
+                                <input type="text" id="contactName" name="contactName" class="form-control" value="<%=invoice.contactName%>">
+                                <label for="contactNumber">Contact Number:</label>
+                                <input type="text" id="contactNumber" name="contactNumber" class="form-control" value="<%=invoice.contactNumber%>">
 
-                                <label for="zip">Zip Code:</label>
-                                <input type="text" id="zip" name="zip" class="form-control" value="<%=invoice.zip%>">
-                                <label for="notes">Notes:</label>
-                                <input type="text" id="notes" name="notes" class="form-control" value="<%=invoice.notes%>">
-                                <label for="photo">Photo Url:</label>
-                                <input type="text" id="photo" name="photo" class="form-control" value="<%=invoice.photo%>">
+                                <label for="paid">Paid:</label>
+                                <input type="boolean" id="paid" name="paid" class="form-control" value="<%=invoice.paid%>">
+                                <label for="billingAddress">Billing Address:</label>
+                                <input type="text" id="billingAddress" name="billingAddress" class="form-control" value="<%=invoice.billingAddress%>">
+                                <label for="invoiceLineItems">Invoice Line Items:</label>
+                                <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="<%=invoice.invoiceLineItems%>">
+                                <label for="memo">Memo:</label>
+                                <input type="text" id="memo" name="memo" class="form-control" value="<%=invoice.memo%>">
                             </div>
                             
                             
                         </div>
+
+
+                  
+                       
+
+
+
+
+
+
+
+
+
                   
                         <!-- Modal footer -->
                         <div class="modal-footer">

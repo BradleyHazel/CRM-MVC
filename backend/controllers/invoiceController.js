@@ -57,16 +57,16 @@ router.post("/add", (req, res) => {
   let date = getTodaysDate()
   req.body.createdDate = `${date}`;
   req.body.paid = false;
-  Invoice.create(req.body).then(res.redirect("/invoices"))
+  Invoice.create(req.body).then(res.redirect("/invoices/list")).catch(console.error);
 
   
   });
 
 
-  router.delete("/:invoiceId", (req, res) => {
+  router.delete("/:invoiceId", (req, res, next) => {
     Invoice.findOneAndDelete({_id:req.params.invoiceId},()=>{
-      res.redirect("/invoices");
-  })
+      res.redirect("/invoices/list");;
+  }) .catch(console.error);
   });
 
 router.put("/:invoiceId", (req, res) => {

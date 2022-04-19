@@ -15,12 +15,20 @@ router.get("/list", (req, res, next) => {
   });
 
 router.get("/", (req, res, next) => {
+  let invoices =[]
   Customer.find({})
       .then(customers => {
-        res.render('index',{customers})})
-      .catch(next);
-  });
-
+        Invoice.find({}).then(result=>{invoices.push(result)
+          
+          let data = {"customers":customers,"invoices":invoices}
+          res.render(`index`,{data});
+        })
+        
+        
+      })
+      .catch(console.error);
+    });
+  
 
 
   router.get("/add", (req, res, next) => {
