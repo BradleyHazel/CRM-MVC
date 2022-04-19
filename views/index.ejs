@@ -9,7 +9,7 @@
           <h4>Customer List</h4>
           
               
-          <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal)};  invoiceNumberArry.push(cust.invoicenumber)    %> 
+          <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) };    %> 
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                       <%=cust.name %>
@@ -19,6 +19,7 @@
                     </ul>
                 </div>
         <% }) %> 
+
     </ul>
     <div class="col-md-10 container p-5 my-5 bg-primary text-white ">
       <div class="jumbotron">
@@ -37,6 +38,8 @@
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
 <div id="invoiceAmount" data-amount=<%= invoiceAmountArry %>></div>
 <div id="colorArry" data-amount=<%= colorArry %>></div>
+<% console.log(customerNameArry)%>
+<% console.log(invoiceNumberArry)%>
 <script>        
   var name = document.getElementById('customerName').dataset.name
   var number = document.getElementById('invoiceNumber').dataset.number
