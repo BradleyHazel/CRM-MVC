@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = "mongodb+srv://test1234:test1234@cluster0.ic7bm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-
-//process.env.DEV_DB_URL
+const mongoURI = process.env.DEV_DB_URL
 
 
 mongoose
