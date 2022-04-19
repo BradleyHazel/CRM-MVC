@@ -20,22 +20,19 @@ router.get("/", (req, res, next) => {
          // loop through customers
          for(let i=0;i<customers.length;i++){
            customers[i].invoicenumber=0
+           customers[i].invoicetotal=0
           //loop through invoices
           for(let j=0;j<result.length;j++){
             // if the customer name matches the invoice name increase the invoice count
             if(customers[i].name == result[j].customer){
               customers[i].invoicenumber++
+              customers[i].invoicetotal= customers[i].invoicetotal+result[j].amount
             }
           }
-          console.log(`Name: ${customers[i].name}`)
-          console.log(`Name: ${customers[i].invoicenumber}`)
          }
-         
           let data = {"customers":customers,"invoices":invoices,}
           res.render(`index`,{data});
         })
-        
-        
       })
       .catch(console.error);
     });
@@ -90,8 +87,6 @@ router.post("/add", (req, res) => {
   let date = getTodaysDate()
   req.body.createdDate = `${date}`;
   Customer.create(req.body).then(res.redirect("/customers"))
-
-  
   });
 
 

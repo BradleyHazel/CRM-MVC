@@ -1,59 +1,93 @@
 <% let customerNameArry = [] %> 
 <% let invoiceNumberArry = [] %> 
+<% let invoiceAmountArry = [] %> 
 <div class="container-fluid row">
-
     <ul class="col-md-2 list-group">
-            
-                <h4>Customer List</h4>
-               
-            
-        <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ customerNameArry.push(cust.name)};  invoiceNumberArry.push(cust.invoicenumber)    %> 
-                <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
-                                <%=cust.name %>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/customers/<%=cust._id%>">View Customer</a></li>
-                        </ul>
-                      </div>
-        <% }) %> 
-</ul>
-
-
-        <div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
-            <div class="jumbotron">
-              <h3>Customer Summary Dashboard</h3>
-              <h5>Customer Total: <%=data.customers.length%></h5>
-              <h5>Invoice Total: <%=data.invoices[0].length%></h5>
-
-<canvas id="myChart" style="width:100%;max-width:900px"></canvas>
+          <h4>Customer List</h4>
               
-            </div>
-          </div>
+          <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal)};  invoiceNumberArry.push(cust.invoicenumber)    %> 
+                <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
+                      <%=cust.name %>
+                     </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/customers/<%=cust._id%>">View Customer</a></li>
+                    </ul>
+                </div>
+        <% }) %> 
+    </ul>
+    <div class="col-md-10 container p-5 my-5 bg-primary text-white ">
+      <div class="jumbotron">
+        <h3>Customer Summary Dashboard</h3>
+        <h5>Customer Total: <%=data.customers.length%></h5>
+        <h5>Invoice Total: <%=data.invoices[0].length%></h5>
+        <canvas id="myChart" style="width:100%;max-width:600px; display: inline;" ></canvas>
+        <canvas id="myChart2" style="width:100%;max-width:600px; display: inline;"></canvas>
+      </div>
+      </div>
 </div>
 
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 <div id="customerName" data-name=<%= customerNameArry %>></div>
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
+<div id="invoiceAmount" data-amount=<%= invoiceAmountArry %>></div>
 
-<script>
-        
-        var name = document.getElementById('customerName').dataset.name
-        var number = document.getElementById('invoiceNumber').dataset.number
-        const customerNames = name.split(",");
-        const invoiceNumbers = number.split(",");
+<script>        
+  var name = document.getElementById('customerName').dataset.name
+  var number = document.getElementById('invoiceNumber').dataset.number
+  var amount = document.getElementById('invoiceAmount').dataset.amount
+  const customerNames = name.split(",");
+  const invoiceNumbers = number.split(",");
+  const invoiceAmounts = amount.split(",");
 
-        new Chart(document.getElementById("myChart"), {
+  new Chart(document.getElementById("myChart"), {
+    type: 'bar',
+    data: 
+    {
+      labels: customerNames,
+      datasets: 
+      [
+        {
+          label: "Invoices",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",],
+          data: invoiceNumbers
+        }
+      ]
+    },
+    options: 
+    {
+      scales: 
+      {
+        yAxes: 
+          [
+            {
+              display: true,
+              stacked: true,
+              ticks: 
+              {
+                min: 0, // minimum value
+              }
+            }
+          ]
+        },
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Number of Invoices'
+      }
+    }
+});
+
+new Chart(document.getElementById("myChart2"), {
     type: 'bar',
     data: {
       labels: customerNames,
       datasets: [
         {
-          label: "Invoices",
+          label: "Invoiced Amount per Customer",
           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",],
-          data: invoiceNumbers
+          data: invoiceAmounts
         }
       ]
     },
@@ -70,7 +104,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
       legend: { display: false },
       title: {
         display: true,
-        text: 'Invoices'
+        text: 'Invoiced Amount per Customer'
       }
     }
 });
