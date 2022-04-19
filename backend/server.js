@@ -6,6 +6,7 @@ const methodOverride = require("method-override")
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
 
+
 app.use(ejsLayouts);
 
 app.use(cors())
@@ -32,3 +33,7 @@ app.use('/invoices', invoiceController);
 app.get('/',(req,res)=>{
   res.redirect('/customers')
 })
+
+
+
+

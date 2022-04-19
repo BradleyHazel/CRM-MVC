@@ -5,8 +5,6 @@ const Invoice = require('../models/invoice-model')
 
 // Index: GET all the Customers
 
-
-
 router.get("/list", (req, res, next) => {
   Customer.find({})
       .then(customers => {
@@ -19,8 +17,21 @@ router.get("/", (req, res, next) => {
   Customer.find({})
       .then(customers => {
         Invoice.find({}).then(result=>{invoices.push(result)
-          
-          let data = {"customers":customers,"invoices":invoices}
+         // loop through customers
+         for(let i=0;i<customers.length;i++){
+           customers[i].invoicenumber=0
+          //loop through invoices
+          for(let j=0;j<result.length;j++){
+            // if the customer name matches the invoice name increase the invoice count
+            if(customers[i].name == result[j].customer){
+              customers[i].invoicenumber++
+            }
+          }
+          console.log(`Name: ${customers[i].name}`)
+          console.log(`Name: ${customers[i].invoicenumber}`)
+         }
+         
+          let data = {"customers":customers,"invoices":invoices,}
           res.render(`index`,{data});
         })
         
@@ -102,3 +113,5 @@ router.put("/:customerId", (req, res) => {
 
   const customerController = router
   module.exports = customerController;
+  
+  

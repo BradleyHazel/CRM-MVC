@@ -8,10 +8,12 @@ const customerSchema = new mongoose.Schema({
   address:{type:String},
   city:{type:String},
   zip:{type:String},
+  country:{type:String},
   photo:{type:String},
   notes:{type:String},
   website:{type:String},
-  createdDate:{type:String}
+  createdDate:{type:String},
+  invoices:{},
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

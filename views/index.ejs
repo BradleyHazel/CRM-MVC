@@ -1,11 +1,13 @@
-
+<% let customerNameArry = [] %> 
+<% let invoiceNumberArry = [] %> 
 <div class="container-fluid row">
 
     <ul class="col-md-2 list-group">
             
                 <h4>Customer List</h4>
+               
             
-        <% data.customers.forEach(cust =>{ %> 
+        <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ customerNameArry.push(cust.name)};  invoiceNumberArry.push(cust.invoicenumber)    %> 
                 <div class="dropdown">
                         <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                                 <%=cust.name %>
@@ -18,52 +20,60 @@
 </ul>
 
 
-
         <div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
             <div class="jumbotron">
               <h3>Customer Summary Dashboard</h3>
               <h5>Customer Total: <%=data.customers.length%></h5>
               <h5>Invoice Total: <%=data.invoices[0].length%></h5>
+
+<canvas id="myChart" style="width:100%;max-width:900px"></canvas>
               
             </div>
           </div>
 </div>
-<canvas id="myChart" width="400" height="400"></canvas>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<div id="customerName" data-name=<%= customerNameArry %>></div>
+<div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
+
 <script>
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
+        
+        var name = document.getElementById('customerName').dataset.name
+        var number = document.getElementById('invoiceNumber').dataset.number
+        const customerNames = name.split(",");
+        const invoiceNumbers = number.split(",");
+
+        new Chart(document.getElementById("myChart"), {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+      labels: customerNames,
+      datasets: [
+        {
+          label: "Invoices",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",],
+          data: invoiceNumbers
+        }
+      ]
     },
     options: {
         scales: {
-            y: {
-                beginAtZero: true
+        yAxes: [{
+            display: true,
+            stacked: true,
+            ticks: {
+                min: 0, // minimum value
             }
-        }
+        }]
+    },
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Invoices'
+      }
     }
 });
 </script>
- 
+
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
