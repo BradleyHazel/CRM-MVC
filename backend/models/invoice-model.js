@@ -8,7 +8,7 @@ const invoiceSchema = new mongoose.Schema({
   invoiceDate:{type:String},
   contactName:{type:String},
   contactNumber:{type:String},
-  paid:{type:Boolean},
+  paid:{type:Boolean, default:false},
   billingAddress:{type:String},
   invoiceLineItems:{type:String},
   memo:{type:String},
