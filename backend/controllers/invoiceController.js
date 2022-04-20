@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const Invoice = require('../models/invoice-model')
-
+const Customer = require('../models/customer-model')
 
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
@@ -14,11 +14,15 @@ router.get("/list", (req, res, next) => {
   
 
   router.get("/add", (req, res, next) => {
-    Invoice.find({})
-        .then(invoices => {
-          res.render('addinvoice',{invoices})})
+    Customer.find({})
+        .then(customers => {
+          
+          res.render('addinvoice',{customers})})
         .catch(next);
     });
+
+
+
 
 router.get("/:id", (req, res, next) => {
   

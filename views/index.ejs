@@ -36,7 +36,8 @@
 </div>
 
 <% customerNameString = customerNameArry.join()%>
-<% customerNameString=customerNameString.replaceAll(" ", "_") %>
+
+<% while(customerNameString.includes(" ")){customerNameString= customerNameString.replaceAll(" ", "_")} %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
@@ -53,7 +54,7 @@
   const customerNames = name.split(",");
   for(let m =0;m<customerNames.length;m++)
 {
-  customerNames[m]= customerNames[m].replaceAll("_", " ")
+  while(customerNames[m].includes("_")){customerNames[m]= customerNames[m].replaceAll("_", " ")} 
 }  const invoiceNumbers = number.split(",");
   const invoiceAmounts = amount.split(",");
   const colorArr = colors.split(",");
