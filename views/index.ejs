@@ -1,12 +1,13 @@
 <% let customerNameArry = [] %> 
+<% let customerNameString = "" %> 
 <% let invoiceNumberArry = [] %> 
 <% let invoiceAmountArry = [] %> 
 <% let colorArry = [] %> 
 <% let numbersUsed = [] %> 
 <% let colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#5b6eb9","#008ab8","#ffbe0a","#ff9999","#ffbaf9","#a9d93c","#0001f6","#d2ba4b","#ff6f69","#646464","#7cbb9e","#f5c600","#ff8282","#f97800","#8430c8","#60720f","#8536a5","#2fe0e0","#ffaa0e","#00bde7","#6441a4","#333333","#a6056f","#eccc6e","#256E96",'#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D','#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC','#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399','#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933','#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'] %> 
 <div class="container-fluid row">
-    <ul class="col-md-2 list-group">
-          <h4>Customer List</h4>
+    <ul class="col-sm-2 list-group">
+          <h6>Customer List</h6>
           
               
           <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) };    %> 
@@ -21,23 +22,28 @@
         <% }) %> 
 
     </ul>
-    <div class="col-md-10 container p-5 my-5 bg-primary text-white ">
-      <div class="jumbotron">
-        <h3>Customer Summary Dashboard</h3>
-        <h5>Customer Total: <%=data.customers.length%></h5>
-        <h5>Invoice Total: <%=data.invoices[0].length%></h5>
-        <canvas id="myChart" style="width:100%;max-width:600px; display: inline;" ></canvas>
-        <canvas id="myChart2" style="width:100%;max-width:600px; display: inline;"></canvas>
+    <div class="col-md-10.5 container p-5 my-5 bg-primary text-white ">
+      <div class="jumbotron" >
+        <h5 style="text-align:center">Customer Dashboard</h5>
+        <p class="text-black">Customer Total: <%=data.customers.length%></p>
+        <p class="text-black">Invoice Total: <%=data.invoices[0].length%></p>
+        <div style="text-align:center">
+        <canvas id="myChart" style="width:100%;max-width:900px; display: inline; " ></canvas>
+        <canvas id="myChart2" style="width:100%;max-width:900px; display: inline; "></canvas>
+      </div>
       </div>
       </div>
 </div>
 
+<% customerNameString = customerNameArry.join()%>
+<% customerNameString=customerNameString.replaceAll(" ", "_") %>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-<div id="customerName" data-name=<%= customerNameArry %>></div>
+<div id="customerName" data-name=<%= customerNameString %>></div>
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
 <div id="invoiceAmount" data-amount=<%= invoiceAmountArry %>></div>
-<div id="colorArry" data-amount=<%= colorArry %>></div>
+<div id="colorArry" data-amount="<%= colorArry %>"></div>
 
 <script>        
   var name = document.getElementById('customerName').dataset.name
@@ -45,10 +51,12 @@
   var amount = document.getElementById('invoiceAmount').dataset.amount
   var colors = document.getElementById('colorArry').dataset.amount
   const customerNames = name.split(",");
-  const invoiceNumbers = number.split(",");
+  for(let m =0;m<customerNames.length;m++)
+{
+  customerNames[m]= customerNames[m].replaceAll("_", " ")
+}  const invoiceNumbers = number.split(",");
   const invoiceAmounts = amount.split(",");
   const colorArr = colors.split(",");
-
   new Chart(document.getElementById("myChart"), {
     type: 'bar',
     data: 
@@ -79,10 +87,15 @@
             }
           ]
         },
+        xAxis: {
+            ticks: {
+              suggestedMax: 100
+            }
+        },
       legend: { display: false },
       title: {
         display: true,
-        text: 'Number of Invoices'
+        text: 'Number of Invoices per Customer'
       }
     }
 });
@@ -102,9 +115,13 @@ new Chart(document.getElementById("myChart2"), {
     options: {
         scales: {
         yAxes: [{
+          
             display: true,
             stacked: true,
             ticks: {
+              callback: function(value, index, ticks) {
+                        return '$' + value;
+                    },
                 min: 0, // minimum value
             }
         }]
