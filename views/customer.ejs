@@ -9,7 +9,13 @@
  
 </ul>
 
-
+<script>
+  function dontAllowWhiteSpace(input){
+    // code https://stackoverflow.com/questions/50738490/prevent-a-white-space-in-the-beginning-of-a-input
+    if(/^\s/.test(input.value))
+      input.value = '';
+      }
+</script>
 
 
 
@@ -384,7 +390,7 @@
                                 <label for="notes">Notes:</label>
                                 <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
                                 <label for="photo">Photo Url:</label>
-                                <input type="text" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
+                                <input type="url" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
                             </div>
                             
                             

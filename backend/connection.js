@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 
+const mongoURI =
   //check if the node environment is production
   process.env.NODE_ENV === "production"
     ? //if so, use DB_URL as the database location

@@ -84,14 +84,26 @@
                     
                             <div class="form-group">
                                 <label for="customer">Customer:</label>
-                                <input type="text" id="customer" name="customer" class="form-control" value="<%=data.invoice.customer%>">
+                
+                                <select name="customer" id="customer" class="form-control text-black" required>
+                                  <option value="<%=data.invoice.customer%>"><%=data.invoice.customer%></option>
+                                  <% data.customers.forEach(cust =>{ %>
+                                  <option value="<%=cust.name%>"><%=cust.name%></option>
+                              <%  }) %> 
+                                </select>
+
                                 <label for="amount">Amount:</label>
                                 <input type="text" id="amount" name="amount" class="form-control" value="<%=data.invoice.amount%>">
 
+                                
+
                                 <label for="dueDate">Due Date:</label>
-                                <input type="text" id="dueDate" name="dueDate" class="form-control" value="<%=data.invoice.dueDate%>">
-                                <label for="invoiceDate">Invoice Date:</label>
-                                <input type="text" id="invoiceDate" name="invoiceDate" class="form-control" value="<%=data.invoice.invoiceDate%>">
+                                <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="<%=data.invoice.dueDate%>" min="2000-01-01" max="2030-12-31" required>
+
+                                <label for="invoiceDate" class="form-label text-black" style="display:inline-block" required>Invoice Date:</label>        
+                                <input type="date" id="invoiceDate" name="invoiceDate" class="form-control text-black" value="<%=data.invoice.invoiceDate%>" min="2000-01-01" max="2030-12-31" required>
+
+                          
 
                                 <label for="contactName">Contact Name:</label>
                                 <input type="text" id="contactName" name="contactName" class="form-control" value="<%=data.invoice.contactName%>">
