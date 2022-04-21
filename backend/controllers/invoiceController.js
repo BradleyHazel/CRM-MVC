@@ -23,12 +23,56 @@ function sortInvoicesAlpha (sortedInvoices){
           sortedInvoices[j] =  sortedInvoices[j+1];
           sortedInvoices[j+1] = swap1
           }
+
+
+        else if(sortedInvoices[j].customer.toUpperCase().charCodeAt(1)==sortedInvoices[j+1].customer.toUpperCase().charCodeAt(1)){
+          if(sortedInvoices[j].customer.toUpperCase().charCodeAt(2)>sortedInvoices[j+1].customer.toUpperCase().charCodeAt(2)){
+            let swap1 = sortedInvoices[j]
+            sortedInvoices[j] =  sortedInvoices[j+1];
+            sortedInvoices[j+1] = swap1
+          }
+          
+        }
           
         }
       }
     }
   return sortedInvoices
   }
+
+  function sortCustomersAlpha (sortedCustomers){
+
+    for(let j=0;j<sortedCustomers.length;j++){
+      // compare each entry to the previous
+        if( j == sortedCustomers.length-1){}
+        else{
+        
+          if(sortedCustomers[j].name.toUpperCase().charCodeAt(0)>sortedCustomers[j+1].name.toUpperCase().charCodeAt(0)){
+            let swap = sortedCustomers[j]
+            sortedCustomers[j] =  sortedCustomers[j+1];
+            sortedCustomers[j+1] = swap
+          }
+          else if(sortedCustomers[j].name.toUpperCase().charCodeAt(0)==sortedCustomers[j+1].name.toUpperCase().charCodeAt(0)){
+            if(sortedCustomers[j].name.toUpperCase().charCodeAt(1)>sortedCustomers[j+1].name.toUpperCase().charCodeAt(1)){
+              let swap1 = sortedCustomers[j]
+            sortedCustomers[j] =  sortedCustomers[j+1];
+            sortedCustomers[j+1] = swap1
+            }
+    
+            else if(sortedCustomers[j].name.toUpperCase().charCodeAt(1)==sortedCustomers[j+1].name.toUpperCase().charCodeAt(1)){
+              if(sortedCustomers[j].name.toUpperCase().charCodeAt(2)>sortedCustomers[j+1].name.toUpperCase().charCodeAt(2)){
+                let swap1 = sortedCustomers[j]
+              sortedCustomers[j] =  sortedCustomers[j+1];
+              sortedCustomers[j+1] = swap1
+              }
+              
+            }
+            
+          }
+        }
+      }
+    return sortedCustomers
+    }
 
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
@@ -56,11 +100,29 @@ router.get("/list", (req, res, next) => {
   
 
   router.get("/add", (req, res, next) => {
+
+
     Customer.find({})
-        .then(customers => {
-          
-          res.render('addinvoice',{customers})})
-        .catch(next);
+    .then(customers => {
+      let sortedCustomers = []
+      // looping through the custome object
+      for(let i =0;i<customers.length;i++){
+        // Add the customer to the list
+          sortedCustomers.push(customers[i])
+  
+        // need to now loop through sorted customers, compare the current customer on the top loop, to uppercase for the comparison of first letter
+        sortedCustomers = sortCustomersAlpha(sortedCustomers)
+      }
+      // loop through again
+      for(let v =0;v<1000;v++){
+        sortedCustomers = sortCustomersAlpha(sortedCustomers)
+      }
+      customers = sortedCustomers
+      res.render('addinvoice',{customers})})
+      
+    .catch(next);
+
+
     });
 
 

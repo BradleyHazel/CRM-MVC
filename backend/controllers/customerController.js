@@ -23,10 +23,20 @@ for(let j=0;j<sortedCustomers.length;j++){
         sortedCustomers[j] =  sortedCustomers[j+1];
         sortedCustomers[j+1] = swap1
         }
+
+        else if(sortedCustomers[j].name.toUpperCase().charCodeAt(1)==sortedCustomers[j+1].name.toUpperCase().charCodeAt(1)){
+          if(sortedCustomers[j].name.toUpperCase().charCodeAt(2)>sortedCustomers[j+1].name.toUpperCase().charCodeAt(2)){
+            let swap1 = sortedCustomers[j]
+          sortedCustomers[j] =  sortedCustomers[j+1];
+          sortedCustomers[j+1] = swap1
+          }
+          
+        }
         
       }
     }
   }
+  
 return sortedCustomers
 }
 
