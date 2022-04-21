@@ -25,8 +25,6 @@ router.get("/list", (req, res, next) => {
 
 
 router.get("/:id", (req, res, next) => {
-  
-  let invoices = Invoice.find({});
 
   Invoice.findById(req.params.id)
     .then((invoice) => {

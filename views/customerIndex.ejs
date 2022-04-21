@@ -1,4 +1,4 @@
-
+<% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
 <div class="container-fluid ">
     
               <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
@@ -6,20 +6,17 @@
                     <div class="jumbotron">
                         <div class="container-fluid row">
 
-                                <ul class="col-md-12 list-group">
+                                <ul class="col-md-12 list-group" >
                                         
                                             <h4>Customer List</h4>
-                                        
+                                            <input type="text" id="customerField" onkeyup="sortCustomerList()" placeholder="Search for customer by name:" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
+                                            <ul id="customerEntry" style=" list-style-type: none; padding: 0; margin: 0;">
                                     <% customers.forEach(inv =>{ %> 
-                                            <div class="dropdown">
-                                                    <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
-                                                            <%=inv.name %>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                      <li><a class="dropdown-item" href="/customers/<%=inv._id%>">View Customer</a></li>
-                                                    </ul>
-                                                  </div>
+                                            
+                                                <li><a href="/customers/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;"><%=inv.name %></a></li>
+                                                  
                                     <% }) %> 
+                                </ul>
                             </ul>
                             
                             
@@ -30,4 +27,24 @@
                     </div>
                     </div>
     
-    
+                    <script>
+                        function sortCustomerList() {
+                          // Code from https://www.w3schools.com/howto/howto_js_filter_lists.asp
+                          var customerField, filter, ul, li, a, i, txtValue;
+                          customerField = document.getElementById('customerField');
+                          filter = customerField.value.toUpperCase();
+                          ul = document.getElementById("customerEntry");
+                          li = ul.getElementsByTagName('li');
+                        
+                          // Loop through all list items, and hide those who don't match the search query
+                          for (i = 0; i < li.length; i++) {
+                            a = li[i].getElementsByTagName("a")[0];
+                            txtValue = a.textContent || a.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                              li[i].style.display = "";
+                            } else {
+                              li[i].style.display = "none";
+                            }
+                          }
+                        }
+                        </script>
