@@ -8,7 +8,7 @@
 
     <form action='/customers/add' method='POST'>
 
-      <div class="mb-3 col-md-12">
+      <div class="mb-3 col-md-12 " style="display: flex;">
         <div class="row col-md-4" style="display:inline-block">
             <label for="name" class="form-label text-black" style="display:inline-block">Name:</label>
           <input type="name" class="form-control text-black" id="name" placeholder="Enter name" oninput="dontAllowWhiteSpace(this)" name="name" minlength="3" style="display:inline" required>
@@ -23,18 +23,25 @@
           <input type="address" class="form-control" id="address" placeholder="Enter address" name="address">
           <label for="zip" class="form-label text-black">Zip Code:</label>
           <input type="zip" class="form-control" id="zip" placeholder="Enter Zip Code" name="zip">
+              
+      <label for="photo" class="form-label text-black" style="display: inline;">Photo URL:</label>
+      <input type="photo" class="form-control" id="photo" placeholder="Enter photo URL" name="photo" style="display: inline;">
         </div>
         <div class="row col-md-4" style="display:inline-block; ">
           <label for="email" class="form-label text-black" style="display:inline-block">Email:</label>
-        <input type="email" class="form-control text-black" id="email" placeholder="Enter email" name="email" style="display:inline">
+        <input type="email" class="form-control text-black" id="email"  placeholder="Enter email" name="email" style="display:inline">
         <label for="phone" class="form-label text-black">Phone:</label>
         <input type="phone" class="form-control" id="phone" placeholder="Enter phone" name="phone">
+        <label for="state" class="form-label text-black">State:</label>
+        <input type="text" class="form-control" id="state" placeholder="Enter state" name="state">
+        
         <label for="notes" class="form-label text-black">Notes:</label>
         <input type="notes" class="form-control" id="notes" placeholder="Enter notes" name="notes">
+        
       </div>
       <div class="row col-md-4" style="display:inline-block">
         <label for="website" class="form-label text-black" style="display:inline-block">Website:</label>
-      <input type="website" class="form-control text-black" id="website" placeholder="Enter website" name="website" style="display:inline">
+      <input type="url" class="form-control text-black" id="website" oninput="dontAllowWhiteSpace(this)" placeholder="Enter website" name="website" style="display:inline">
       <label for="city" class="form-label text-black">City:</label>
       <input type="city" class="form-control" id="city" placeholder="Enter City" name="city">
 
@@ -288,11 +295,7 @@
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
      </select>
-    </div>
-    <div class="row col-md-4" style="display:inline-block">
-    
-      <label for="photo" class="form-label text-black">Photo URL:</label>
-      <input type="photo" class="form-control" id="photo" placeholder="Enter photo URL" name="photo">
+     
     </div>
       </div>
 

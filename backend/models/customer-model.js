@@ -9,6 +9,7 @@ const customerSchema = new mongoose.Schema({
   city:{type:String},
   zip:{type:String},
   country:{type:String},
+  state:{type:String},
   photo:{type:String},
   notes:{type:String},
   website:{type:String},
