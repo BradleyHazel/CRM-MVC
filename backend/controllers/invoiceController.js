@@ -3,11 +3,53 @@ const router = express.Router()
 const Invoice = require('../models/invoice-model')
 const Customer = require('../models/customer-model')
 
+
+
+function sortInvoicesAlpha (sortedInvoices){
+
+  for(let j=0;j<sortedInvoices.length;j++){
+    // compare each entry to the previous
+      if( j == sortedInvoices.length-1){}
+      else{
+      
+        if(sortedInvoices[j].customer.toUpperCase().charCodeAt(0)>sortedInvoices[j+1].customer.toUpperCase().charCodeAt(0)){
+          let swap = sortedInvoices[j]
+          sortedInvoices[j] =  sortedInvoices[j+1];
+          sortedInvoices[j+1] = swap
+        }
+        else if(sortedInvoices[j].customer.toUpperCase().charCodeAt(0)==sortedInvoices[j+1].customer.toUpperCase().charCodeAt(0)){
+          if(sortedInvoices[j].customer.toUpperCase().charCodeAt(1)>sortedInvoices[j+1].customer.toUpperCase().charCodeAt(1)){
+            let swap1 = sortedInvoices[j]
+          sortedInvoices[j] =  sortedInvoices[j+1];
+          sortedInvoices[j+1] = swap1
+          }
+          
+        }
+      }
+    }
+  return sortedInvoices
+  }
+
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
   Invoice.find({})
       .then(invoices => {
+        let sortedInvoices = []
+        // looping through the custome object
+        for(let i =0;i<invoices.length;i++){
+          // Add the customer to the list
+          sortedInvoices.push(invoices[i])
+    
+          // need to now loop through sorted customers, compare the current customer on the top loop, to uppercase for the comparison of first letter
+          sortedInvoices = sortInvoicesAlpha(sortedInvoices)
+        }
+        // loop through again
+        for(let v =0;v<1000;v++){
+          sortedInvoices = sortInvoicesAlpha(sortedInvoices)
+        }
+        invoices = sortedInvoices
         res.render('invoiceIndex',{invoices})})
+        
       .catch(next);
   });
 
