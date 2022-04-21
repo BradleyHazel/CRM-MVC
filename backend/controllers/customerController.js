@@ -40,23 +40,29 @@ for(let j=0;j<sortedCustomers.length;j++){
 return sortedCustomers
 }
 
+function runSortCustomers(customers){
+
+  let sortedCustomers = []
+  // looping through the custome object
+  for(let i =0;i<customers.length;i++){
+    // Add the customer to the list
+      sortedCustomers.push(customers[i])
+
+    // need to now loop through sorted customers, compare the current customer on the top loop, to uppercase for the comparison of first letter
+    sortedCustomers = sortCustomersAlpha(sortedCustomers)
+  }
+  // loop through again
+  for(let v =0;v<1000;v++){
+    sortedCustomers = sortCustomersAlpha(sortedCustomers)
+  }
+  return sortedCustomers
+}
+
 router.get("/list", (req, res, next) => {
   Customer.find({})
       .then(customers => {
-        let sortedCustomers = []
-        // looping through the custome object
-        for(let i =0;i<customers.length;i++){
-          // Add the customer to the list
-            sortedCustomers.push(customers[i])
     
-          // need to now loop through sorted customers, compare the current customer on the top loop, to uppercase for the comparison of first letter
-          sortedCustomers = sortCustomersAlpha(sortedCustomers)
-        }
-        // loop through again
-        for(let v =0;v<1000;v++){
-          sortedCustomers = sortCustomersAlpha(sortedCustomers)
-        }
-        customers = sortedCustomers
+        customers = runSortCustomers(customers)
         res.render('customerIndex',{customers})})
         
       .catch(next);
@@ -95,7 +101,7 @@ router.get("/", (req, res, next) => {
           countryCountArr.push(`${countryCount[property]}`);
         }
 
-
+        customers = runSortCustomers(customers)
 
           let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr}
           res.render(`index`,{data});
