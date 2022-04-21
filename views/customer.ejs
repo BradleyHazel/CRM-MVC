@@ -114,15 +114,15 @@
                           <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
                     
                             <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" class="form-control" value="<%=data.customers.name%>">
+
                                 <label for="email">Email:</label>
-                                <input type="text" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
+                                <input type="email" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
 
                                 <label for="phone">Phone:</label>
-                                <input type="text" id="phone" name="phone" class="form-control" value="<%=data.customers.phone%>">
+                                <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<%=data.customers.phone%>">
+
                                 <label for="website">Website:</label>
-                                <input type="text" id="website" name="website" class="form-control" value="<%=data.customers.website%>">
+                                <input type="url" id="website" name="website" class="form-control" value="<%=data.customers.website%>">
 
                                 <label for="address">Address:</label>
                                 <input type="text" id="address" name="address" class="form-control" value="<%=data.customers.address%>">
