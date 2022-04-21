@@ -49,12 +49,7 @@
                         &nbsp
                         <div class="row" style="padding-left: 20px;">
                         <div class="col-sm-4 text-black">State: <%=data.customers.state %></div>
-                          <div class="col-sm-4 text-black">Invoices: 
-                        <%let invNum =1; data.invoices[0].forEach(inv =>{ %> 
-                          <p class="text-black"><a href="/invoices/<%= inv._id %>">invoice #: <%=invNum%></a></p>
-                          <% invNum++})%> 
-                         
-                          </div></div>
+                          
                         <div class="col-sm-4 text-black"></div>
                       </div>
                       </div>
