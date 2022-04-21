@@ -2,7 +2,7 @@
 
 
 
-<div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
+<div class="col-md-10 container p-5 my-5 bg-primary text-white">
   <div class="jumbotron">
     <h3>Add Customer</h3>
 
@@ -32,7 +32,8 @@
       <input type="city" class="form-control" id="city" placeholder="Enter City" name="city">
 
       <label for="country" class="form-label text-black">Country:</label>
-      <select id="country" name="country">
+      <select id="country" name="country" required>
+        <option value="United States of America" selected>United States of America</option>
         <option value="Afganistan">Afghanistan</option>
         <option value="Albania">Albania</option>
         <option value="Algeria">Algeria</option>

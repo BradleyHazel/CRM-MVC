@@ -3,9 +3,9 @@ const mongoose = require("../connection")
 
 const invoiceSchema = new mongoose.Schema({
   customer: {type: String, required:true},
-  amount:{type:Number},
-  dueDate:{type:String},
-  invoiceDate:{type:String},
+  amount:{type:Number, required:true},
+  dueDate:{type:String, required:true},
+  invoiceDate:{type:String, required:true},
   contactName:{type:String},
   contactNumber:{type:String},
   paid:{type:Boolean, default:false},

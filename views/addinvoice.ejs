@@ -2,7 +2,7 @@
 
 
 
-<div class="col-md-10 container p-5 my-5 bg-primary text-white sticky-top">
+<div class="col-md-10 container p-5 my-5 bg-primary text-white">
   <div class="jumbotron">
     <h3>Add Invoice</h3>
 
@@ -18,7 +18,7 @@
         <%  }) %> 
           </select>
 
-          <label for="invoiceDate" class="form-label text-black" style="display:inline-block">Invoice Date:</label>        
+          <label for="invoiceDate" class="form-label text-black" style="display:inline-block" required>Invoice Date:</label>        
         <input type="date" id="invoiceDate" name="invoiceDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31">
 
           <label for="billingAddress" class="form-label text-black">Billing Address:</label>
@@ -26,7 +26,7 @@
         </div>
         <div class="row col-md-4" style="display:inline-block; ">
           <label for="amount" class="form-label text-black">Amount:</label>
-          <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount">
+          <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount" required>
 
         <label for="contactName" class="form-label text-black">Contact Name:</label>
         <input type="text" class="form-control" id="contactName" placeholder="Enter Contact Name" name="contactName">
@@ -36,7 +36,7 @@
       </div>
       <div class="row col-md-4" style="display:inline-block">
 
-        <label for="dueDate" class="form-label text-black" style="display:inline-block">Due Date:</label>
+        <label for="dueDate" class="form-label text-black" style="display:inline-block" required>Due Date:</label>
       <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31">
 
       <label for="contactNumber" class="form-label text-black">Contact Number:</label>

@@ -30,7 +30,24 @@ router.get("/", (req, res, next) => {
             }
           }
          }
-          let data = {"customers":customers,"invoices":invoices,}
+         // getting the countrys
+         let customerCountry =[]
+         customers.forEach(cust=>{
+           customerCountry.push(cust.country)
+         })
+         let countryCount = {};
+         let countryNameArr =[];
+         let countryCountArr = []
+         customerCountry.forEach(country => countryCount[country] = 1  + (countryCount[country] || 0))
+
+         for (const property in countryCount) {
+          countryNameArr.push(`${property}`);
+          countryCountArr.push(`${countryCount[property]}`);
+        }
+
+
+
+          let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr}
           res.render(`index`,{data});
         })
       })
@@ -51,7 +68,7 @@ router.get("/:id", (req, res, next) => {
   Customer.findById(req.params.id)
     .then((customers) => {
       Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
-    
+
         let data = {"customers":customers,"invoices":invoices}
         res.render(`customer`,{data});
       })

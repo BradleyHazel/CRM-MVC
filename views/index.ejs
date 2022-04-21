@@ -1,4 +1,5 @@
 <% let customerNameArry = [] %> 
+<% let customerCountryArry = [] %> 
 <% let customerNameString = "" %> 
 <% let invoiceNumberArry = [] %> 
 <% let invoiceAmountArry = [] %> 
@@ -10,7 +11,7 @@
           <h6>Customer List</h6>
           
               
-          <% data.customers.forEach(cust =>{ if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) };    %> 
+          <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) };    %> 
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                       <%=cust.name %>
@@ -30,6 +31,7 @@
         <div style="text-align:center">
         <canvas id="myChart" style="width:100%;max-width:900px; display: inline; " ></canvas>
         <canvas id="myChart2" style="width:100%;max-width:900px; display: inline; "></canvas>
+        <canvas id="myChart3" style="width:100%;max-width:900px; display: inline; "></canvas>
       </div>
       </div>
       </div>
@@ -45,12 +47,22 @@
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
 <div id="invoiceAmount" data-amount=<%= invoiceAmountArry %>></div>
 <div id="colorArry" data-amount="<%= colorArry %>"></div>
+<div id="countryNameArr" data-countryname="<%= data.countryNameArr %>"></div>
+<div id="countryCountArr" data-countrycount="<%= data.countryCountArr %>"></div>
 
-<script>        
+
+<script>       
+
   var name = document.getElementById('customerName').dataset.name
   var number = document.getElementById('invoiceNumber').dataset.number
   var amount = document.getElementById('invoiceAmount').dataset.amount
   var colors = document.getElementById('colorArry').dataset.amount
+
+  var countryName1 = document.getElementById('countryNameArr').dataset.countryname
+  var countryCount1 = document.getElementById('countryCountArr').dataset.countrycount
+  
+  console.log(countryName1)
+  console.log(countryCount1)
   const customerNames = name.split(",");
   for(let m =0;m<customerNames.length;m++)
 {
@@ -58,6 +70,8 @@
 }  const invoiceNumbers = number.split(",");
   const invoiceAmounts = amount.split(",");
   const colorArr = colors.split(",");
+  const countrys = countryName1.split(",");
+  const countrycount = countryCount1.split(",");
   new Chart(document.getElementById("myChart"), {
     type: 'bar',
     data: 
@@ -133,6 +147,26 @@ new Chart(document.getElementById("myChart2"), {
         text: 'Invoiced Amount per Customer'
       }
     }
+});
+
+
+
+
+new Chart("myChart3", {
+  type: "doughnut",
+  data: {
+    labels: countrys,
+    datasets: [{
+      backgroundColor: colorArr,
+      data: countrycount
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Customer Country Summary"
+    }
+  }
 });
 </script>
 <div>&nbsp;</div>
