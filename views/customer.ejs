@@ -22,7 +22,7 @@
                   <div class="card col-sm-2" style="width:100px" >
                         <img class="card-img-top"  src="<%= (data.customers.photo ? data.customers.photo : 'https://www.w3schools.com/bootstrap5/img_avatar1.png') %>" alt="Card image">
                         <div class="card-body" >
-                          <h5 class="card-title text-black"> Name: <%=data.customers.name %></h5>
+                          <p class="card-title text-black"> Name: <%=data.customers.name %></p>
                   
                         </div>
                         
@@ -377,7 +377,10 @@
                        
                                 <label for="zip" style="display: inline;">Zip Code:</label>
                                 <input type="text" id="zip" name="zip" class="form-control" value="<%=data.customers.zip%>">
-                          
+
+                                <label for="state" style="display: inline;">State:</label>
+                                <input type="text" id="state" name="state" class="form-control" value="<%=data.customers.state%>">
+
                                 <label for="notes">Notes:</label>
                                 <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
                                 <label for="photo">Photo Url:</label>
@@ -437,3 +440,7 @@
                       </div>
                     </div>
                   </div>
+                  &nbsp
+                  &nbsp
+                  &nbsp
+                   &nbsp

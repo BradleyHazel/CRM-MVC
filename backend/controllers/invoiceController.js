@@ -124,16 +124,11 @@ router.get("/list", (req, res, next) => {
   
 
   router.get("/add", (req, res, next) => {
-
-
     Customer.find({})
     .then(customers => {
       customers = runSortCustomers(customers)
       res.render('addinvoice',{customers})})
-      
     .catch(next);
-
-
     });
 
 
@@ -143,7 +138,13 @@ router.get("/:id", (req, res, next) => {
 
   Invoice.findById(req.params.id)
     .then((invoice) => {
-      res.render(`invoice`,{invoice});
+      Customer.find({name:invoice.customer}).then((customer)=>{
+      customer = customer[0]
+
+      let data = {"invoice":invoice,"customer":customer}
+        res.render(`invoice`,{data});
+      }).catch(console.error);
+      
     })
     .catch(console.error);
   });
