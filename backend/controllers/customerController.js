@@ -164,8 +164,13 @@ router.post("/add", (req, res) => {
 
 
   router.delete("/:customerId", (req, res) => {
-    Customer.findOneAndDelete({_id:req.params.customerId},()=>{
-      res.redirect("/customers");
+    Customer.findOneAndDelete({_id:req.params.customerId}).then((customer)=>{
+      
+      Invoice.deleteMany({customer:customer.name}).then(()=>{
+
+        res.redirect("/customers");
+      })
+
   })
   });
 
@@ -175,7 +180,6 @@ router.put("/:customerId", (req, res) => {
   let invoices =[]
   Customer.findById(req.params.customerId)
     .then((customers) => {
-
 
       Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
 

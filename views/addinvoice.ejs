@@ -44,10 +44,10 @@
       <div class="row col-md-4" style="display:inline-block">
 
         <label for="dueDate" class="form-label text-black" style="display:inline-block" required>Due Date:</label>
-      <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31">
+      <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
 
       <label for="contactNumber" class="form-label text-black">Contact Number:</label>
-      <input type="text" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contactNumber">
+      <input type="tel" class="form-control" id="contactNumber" name="contactNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Enter Contact Number">
 
       <label for="memo" class="form-label text-black">Memo:</label>
       <input type="photo" class="form-control" id="memo" placeholder="Enter memo" name="memo">
