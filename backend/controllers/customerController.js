@@ -170,10 +170,39 @@ router.post("/add", (req, res) => {
   });
 
 router.put("/:customerId", (req, res) => {
-  Customer.findOneAndUpdate({_id:req.params.customerId},req.body,{ new: true }).then(() => {
-    res.redirect(`/customers/${req.params.customerId}`);
-  })
-  .catch(console.error);
+
+
+  let invoices =[]
+  Customer.findById(req.params.customerId)
+    .then((customers) => {
+
+
+      Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
+
+        Invoice.updateMany({customer:customers.name},{customer:req.body.name}).then((invoice) => {
+ 
+
+        }).then(()=>{
+
+          Customer.findOneAndUpdate({_id:req.params.customerId},req.body,{ new: true }).then((customer) => {
+
+            res.redirect(`/customers/${req.params.customerId}`);
+          })
+          .catch(console.error);
+
+        })
+        .catch(console.error);
+
+      })
+      
+      
+    })
+    .catch(console.error);
+
+    /*
+  
+  
+  */
 });
 
 

@@ -110,11 +110,13 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                          
-                
+                          
                           <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
                     
                             <div class="form-group">
 
+                              <label for="name">Name:</label>
+                              <input type="text" id="name" name="name" class="form-control" value="<%=data.customers.name%>">
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
 
