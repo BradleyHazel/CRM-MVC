@@ -1,5 +1,11 @@
+<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
 
-                    <% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
+<div class="text-white"> Logged in as: <%= data.username %></div>
+
+
+
+</nav>
+<% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
                     <div class="container-fluid ">
                         
                                   <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
@@ -12,7 +18,7 @@
                                                                 <h4>Invoice List</h4>
                                                                 <input type="text" id="invoiceField" onkeyup="sortInvoiceList()" placeholder="Search for invoice by name, amount, or due date:" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
                                                                 <ul id="invoiceEntry" style=" list-style-type: none; padding: 0; margin: 0;">
-                                                        <% invoices.forEach(inv =>{ %> 
+                                                        <% data.invoices.forEach(inv =>{ %> 
                                                                 
                                                                     <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;"> <%=inv.customer %> | $<%=inv.amount %> | <%=inv.dueDate %></a></li>
                                                                       

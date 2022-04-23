@@ -63,12 +63,16 @@ router.get("/list", (req, res, next) => {
       .then(customers => {
     
         customers = runSortCustomers(customers)
-        res.render('customerIndex',{customers})})
+
+        let data = {"customers":customers,"username":req.user.username}
+        res.render(`customerIndex`,{data});
+})
         
       .catch(next);
   });
 
 router.get("/", (req, res, next) => {
+
   let invoices =[]
   Customer.find({})
       .then(customers => {
@@ -103,7 +107,7 @@ router.get("/", (req, res, next) => {
 
         customers = runSortCustomers(customers)
 
-          let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr}
+          let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr.at,"username":req.user.username}
           res.render(`index`,{data});
         })
       })
@@ -115,7 +119,11 @@ router.get("/", (req, res, next) => {
   router.get("/add", (req, res, next) => {
     Customer.find({})
         .then(customers => {
-          res.render('add',{customers})})
+
+          let data = {"customers":customers,"username":req.user.username}
+          res.render(`add`,{data});
+
+          })
         .catch(next);
     });
 
@@ -125,7 +133,7 @@ router.get("/:id", (req, res, next) => {
     .then((customers) => {
       Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
 
-        let data = {"customers":customers,"invoices":invoices}
+        let data = {"customers":customers,"invoices":invoices,"username":req.user.username}
         res.render(`customer`,{data});
       })
       

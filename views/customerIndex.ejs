@@ -1,3 +1,10 @@
+<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
+
+<div class="text-white"> Logged in as: <%= data.username %></div>
+
+
+
+</nav>
 <% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
 <div class="container-fluid ">
     
@@ -11,7 +18,7 @@
                                             <h4>Customer List</h4>
                                             <input type="text" id="customerField" onkeyup="sortCustomerList()" placeholder="Search for customer by name:" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
                                             <ul id="customerEntry" style=" list-style-type: none; padding: 0; margin: 0;">
-                                    <% customers.forEach(cust =>{ %> 
+                                    <% data.customers.forEach(cust =>{ %> 
                                             
                                                 <li class="btn list-group-item list-group-item-action"><a href="/customers/<%=cust._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;"><%=cust.name %></a></li>
                                                   

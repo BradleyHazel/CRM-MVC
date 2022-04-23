@@ -114,9 +114,15 @@ function sortInvoicesAlpha (sortedInvoices){
 router.get("/list", (req, res, next) => {
   Invoice.find({})
       .then(invoices => {
+
+        
        
         invoices = runSortInvoices(invoices)
-        res.render('invoiceIndex',{invoices})})
+
+
+        let data = {"invoices":invoices,"username":req.user.username}
+        res.render(`invoiceIndex`,{data});
+        })
         
       .catch(next);
   });
@@ -126,8 +132,12 @@ router.get("/list", (req, res, next) => {
   router.get("/add", (req, res, next) => {
     Customer.find({})
     .then(customers => {
+
       customers = runSortCustomers(customers)
-      res.render('addinvoice',{customers})})
+      let data = {"customers":customers,"username":req.user.username}
+      res.render(`addinvoice`,{data});
+      
+     })
     .catch(next);
     });
 
@@ -144,7 +154,7 @@ router.get("/:id", (req, res, next) => {
 
           customers =runSortCustomers(customers)
 
-          let data = {"invoice":invoice,"customer":customer,"customers":customers}
+          let data = {"invoice":invoice,"customer":customer,"customers":customers,"username":req.user.username}
           res.render(`invoice`,{data});
 
         }
