@@ -3,7 +3,6 @@
 <% let customerNameString = "" %> 
 <% let invoiceNumberArry = [] %> 
 <% let invoiceAmountArry = [] %> 
-<% let colorArry = [] %> 
 <% let numbersUsed = [] %> 
 <% let colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#5b6eb9","#008ab8","#ffbe0a","#ff9999","#ffbaf9","#a9d93c","#0001f6","#d2ba4b","#ff6f69","#646464","#7cbb9e","#f5c600","#ff8282","#f97800","#8430c8","#60720f","#8536a5","#2fe0e0","#ffaa0e","#00bde7","#6441a4","#333333","#a6056f","#eccc6e","#256E96",'#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D','#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC','#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399','#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933','#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'] %> 
 
@@ -21,7 +20,7 @@
           <h4 style="padding-top:11px; text-align:center">Customer List</h4>
           
               
-          <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; while(numbersUsed.includes(selectedColor) == true){selectedColor =  Math.floor(Math.random()*colors.length)}; numbersUsed.push(selectedColor); colorArry.push( colors[selectedColor]  ); customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) };    %> 
+          <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) ; } %> 
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                       <%=cust.name %>
@@ -57,7 +56,15 @@
 <div id="customerName" data-name=<%= customerNameString %>></div>
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
 <div id="invoiceAmount" data-amount=<%= invoiceAmountArry %>></div>
-<div id="colorArry" data-amount="<%= colorArry %>"></div>
+<% // source https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array %>
+<% function shuffle(array) { let currentIndex = array.length,  randomIndex; // While there remain elements to shuffle.%>
+<% while (currentIndex != 0) { // Pick a remaining element.%>
+<% randomIndex = Math.floor(Math.random() * currentIndex); currentIndex--; // And swap it with the current element.%>
+<% [array[currentIndex], array[randomIndex]] = [ array[randomIndex], array[currentIndex]]; } return array; } %>
+
+<% colors = shuffle(colors) %>
+
+<div id="colorArry" data-amount="<%= colors %>"></div>
 <div id="countryNameArr" data-countryname="<%= data.countryNameArr %>"></div>
 <div id="countryCountArr" data-countrycount="<%= data.countryCountArr %>"></div>
 
@@ -72,8 +79,7 @@
   var countryName1 = document.getElementById('countryNameArr').dataset.countryname
   var countryCount1 = document.getElementById('countryCountArr').dataset.countrycount
   
-  console.log(countryName1)
-  console.log(countryCount1)
+
   const customerNames = name.split(",");
   for(let m =0;m<customerNames.length;m++)
 {

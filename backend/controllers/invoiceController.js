@@ -170,6 +170,7 @@ function getTodaysDate(){
   let year = today.getFullYear();
   year = year.toString()
   let month = today.getMonth();
+  month=month+1;
   month = month.toString()
   let day = today.getDate();
   day = day.toString()

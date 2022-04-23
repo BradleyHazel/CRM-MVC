@@ -107,7 +107,7 @@ router.get("/", (req, res, next) => {
 
         customers = runSortCustomers(customers)
 
-          let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr.at,"username":req.user.username}
+          let data = {"customers":customers,"invoices":invoices,"countryNameArr":countryNameArr,"countryCountArr":countryCountArr,"username":req.user.username}
           res.render(`index`,{data});
         })
       })
@@ -147,6 +147,7 @@ function getTodaysDate(){
   let year = today.getFullYear();
   year = year.toString()
   let month = today.getMonth();
+  month=month+1
   month = month.toString()
   let day = today.getDate();
   day = day.toString()

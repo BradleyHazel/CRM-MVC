@@ -1,6 +1,6 @@
 [
   {"name":"Apple",
-  "owner":"test4",
+  "owner":"demo",
   "email":"Apple@gmail.com",
   "phone":"555-555-5555",
   "address":"3921 Street Rd",
@@ -13,7 +13,7 @@
   "customerSince":"Fri Jul 02 2021"
 },
 {"name":"Microsoft",
-  "owner":"null",
+  "owner":"demo",
   "email":"Microsoft@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -26,6 +26,7 @@
   "customerSince":"Wed Jul 05 2022"
 },  
 {"name":"Slack",
+  "owner":"demo",
   "email":"Slack@gmail.com",
   "phone":"555-555-5555",
   "address":"3921 Street Rd",
@@ -38,6 +39,7 @@
   "customerSince":"Fri Jul 02 2021"
 },
 {"name":"Google",
+  "owner":"demo",
   "email":"Google@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -50,6 +52,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Hulu",
+  "owner":"demo",
   "email":"Hulu@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -62,6 +65,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Netflix",
+  "owner":"demo",
   "email":"Netflix@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -74,6 +78,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"AT&T",
+  "owner":"demo",
   "email":"AT&T@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -86,6 +91,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Comcast",
+  "owner":"demo",
   "email":"Comcast@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -98,6 +104,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Gamestop",
+  "owner":"demo",
   "email":"Gamestop@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -110,6 +117,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Best Buy",
+  "owner":"demo",
   "email":"Best Buy@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -122,6 +130,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Truist",
+  "owner":"demo",
   "email":"Truist@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -133,7 +142,8 @@
   "website":"https://www.Truist.com/",
   "customerSince":"Wed Jul 05 2022"
 },
-{"name":"Samsung",
+{"name":"Samsung",  
+  "owner":"demo",
   "email":"Samsung@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -146,6 +156,7 @@
   "customerSince":"Wed Jul 05 2022"
 },
 {"name":"Amazon",
+  "owner":"demo",
   "email":"Amazon@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -159,6 +170,7 @@
 }
 ,
 {"name":"Snapchat",
+  "owner":"demo",
   "email":"Snapchat@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -172,6 +184,7 @@
 }
 ,
 {"name":"Facebook",
+  "owner":"demo",
   "email":"Facebook@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -185,6 +198,7 @@
 }
 ,
 {"name":"Instagram",
+  "owner":"demo",
   "email":"Instagram@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -198,6 +212,7 @@
 }
 ,
 {"name":"Venmo",
+  "owner":"demo",
   "email":"Venmo@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -211,6 +226,7 @@
 }
 ,
 {"name":"Reddit",
+  "owner":"demo",
   "email":"Reddit@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -224,6 +240,7 @@
 }
 ,
 {"name":"Spotify",
+  "owner":"demo",
   "email":"Spotify@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -237,6 +254,7 @@
 }
 ,
 {"name":"Tik Tok",
+  "owner":"demo",
   "email":"TikTok@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -250,6 +268,7 @@
 }
 ,
 {"name":"Postmates",
+  "owner":"demo",
   "email":"Postmates@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -263,6 +282,7 @@
 }
 ,
 {"name":"LinkedIn",
+  "owner":"demo",
   "email":"LinkedIn@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
@@ -276,6 +296,7 @@
 }
 ,
 {"name":"Adidas",
+  "owner":"demo",
   "email":"Adidas@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",
