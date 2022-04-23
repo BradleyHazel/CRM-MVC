@@ -1,5 +1,6 @@
 [
   {"name":"Apple",
+  "owner":"test4",
   "email":"Apple@gmail.com",
   "phone":"555-555-5555",
   "address":"3921 Street Rd",
@@ -12,6 +13,7 @@
   "customerSince":"Fri Jul 02 2021"
 },
 {"name":"Microsoft",
+  "owner":"null",
   "email":"Microsoft@gmail.com",
   "phone":"555-555-5555",
   "address":"3123 Street Rd",

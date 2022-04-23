@@ -2,6 +2,7 @@
 const mongoose = require("../connection")
 
 const customerSchema = new mongoose.Schema({
+  owner: {type:String},
   name: {type: String, required:true},
   email: {type:String},
   phone: {type:String},

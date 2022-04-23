@@ -112,7 +112,7 @@ function sortInvoicesAlpha (sortedInvoices){
 
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
-  Invoice.find({})
+  Invoice.find({owner:req.user.username})
       .then(invoices => {
 
         
@@ -130,7 +130,7 @@ router.get("/list", (req, res, next) => {
   
 
   router.get("/add", (req, res, next) => {
-    Customer.find({})
+    Customer.find({owner:req.user.username})
     .then(customers => {
 
       customers = runSortCustomers(customers)
@@ -148,8 +148,8 @@ router.get("/:id", (req, res, next) => {
 
   Invoice.findById(req.params.id)
     .then((invoice) => {
-      Customer.find({name:invoice.customer}).then((customer)=>{
-        Customer.find({}).then((customers)=>{
+      Customer.find({name:invoice.customer,owner:req.user.username}).then((customer)=>{
+        Customer.find({owner:req.user.username}).then((customers)=>{
           customer = customer[0]
 
           customers =runSortCustomers(customers)
@@ -191,6 +191,7 @@ router.post("/add", (req, res) => {
   let date = getTodaysDate()
   req.body.createdDate = `${date}`;
   req.body.paid = false;
+  req.body.owner = req.user.username;
   Invoice.create(req.body).then(res.redirect("/invoices/list")).catch(console.error);
 
   
@@ -198,13 +199,13 @@ router.post("/add", (req, res) => {
 
 
   router.delete("/:invoiceId", (req, res, next) => {
-    Invoice.findOneAndDelete({_id:req.params.invoiceId},()=>{
+    Invoice.findOneAndDelete({_id:req.params.invoiceId,owner:req.user.username},()=>{
       res.redirect("/invoices/list");;
   }) .catch(console.error);
   });
 
 router.put("/:invoiceId", (req, res) => {
-  Invoice.findOneAndUpdate({_id:req.params.invoiceId},req.body,{ new: true }).then(() => {
+  Invoice.findOneAndUpdate({_id:req.params.invoiceId,owner:req.user.username},req.body,{ new: true }).then(() => {
     res.redirect(`/invoices/${req.params.invoiceId}`);
   })
   .catch(console.error);

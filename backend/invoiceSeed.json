@@ -1,6 +1,7 @@
 [
   {
   "customer":"Apple",
+  "owner":"test4",
   "amount":5000,
   "dueDate":"2022-01-30",
   "invoiceDate":"2022-01-30",

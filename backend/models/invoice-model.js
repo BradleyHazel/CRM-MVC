@@ -2,6 +2,7 @@
 const mongoose = require("../connection")
 
 const invoiceSchema = new mongoose.Schema({
+  owner: {type:String},
   customer: {type: String, required:true},
   amount:{type:Number, required:true},
   dueDate:{type:String, required:true},

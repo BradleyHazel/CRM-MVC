@@ -59,7 +59,7 @@ function runSortCustomers(customers){
 }
 
 router.get("/list", (req, res, next) => {
-  Customer.find({})
+  Customer.find({owner:req.user.username})
       .then(customers => {
     
         customers = runSortCustomers(customers)
@@ -74,9 +74,9 @@ router.get("/list", (req, res, next) => {
 router.get("/", (req, res, next) => {
 
   let invoices =[]
-  Customer.find({})
+  Customer.find({owner:req.user.username})
       .then(customers => {
-        Invoice.find({}).then(result=>{invoices.push(result)
+        Invoice.find({owner:req.user.username}).then(result=>{invoices.push(result)
          // loop through customers
          for(let i=0;i<customers.length;i++){
            customers[i].invoicenumber=0
@@ -117,7 +117,7 @@ router.get("/", (req, res, next) => {
 
 
   router.get("/add", (req, res, next) => {
-    Customer.find({})
+    Customer.find({owner:req.user.username})
         .then(customers => {
 
           let data = {"customers":customers,"username":req.user.username}
@@ -131,7 +131,7 @@ router.get("/:id", (req, res, next) => {
   let invoices =[]
   Customer.findById(req.params.id)
     .then((customers) => {
-      Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
+      Invoice.find({customer:customers.name,owner:req.user.username}).then(result=>{invoices.push(result)
 
         let data = {"customers":customers,"invoices":invoices,"username":req.user.username}
         res.render(`customer`,{data});
@@ -167,14 +167,15 @@ router.post("/add", (req, res) => {
   // getting the current time 
   let date = getTodaysDate()
   req.body.createdDate = `${date}`;
+  req.body.owner = req.user.username;
   Customer.create(req.body).then(res.redirect("/customers"))
   });
 
 
   router.delete("/:customerId", (req, res) => {
-    Customer.findOneAndDelete({_id:req.params.customerId}).then((customer)=>{
+    Customer.findOneAndDelete({_id:req.params.customerId,owner:req.user.username}).then((customer)=>{
       
-      Invoice.deleteMany({customer:customer.name}).then(()=>{
+      Invoice.deleteMany({customer:customer.name,owner:req.user.username}).then(()=>{
 
         res.redirect("/customers");
       })
@@ -189,14 +190,14 @@ router.put("/:customerId", (req, res) => {
   Customer.findById(req.params.customerId)
     .then((customers) => {
 
-      Invoice.find({customer:customers.name}).then(result=>{invoices.push(result)
+      Invoice.find({customer:customers.name,owner:req.user.username}).then(result=>{invoices.push(result)
 
-        Invoice.updateMany({customer:customers.name},{customer:req.body.name}).then((invoice) => {
+        Invoice.updateMany({customer:customers.name,owner:req.user.username},{customer:req.body.name}).then((invoice) => {
  
 
         }).then(()=>{
 
-          Customer.findOneAndUpdate({_id:req.params.customerId},req.body,{ new: true }).then((customer) => {
+          Customer.findOneAndUpdate({_id:req.params.customerId,owner:req.user.username},req.body,{ new: true }).then((customer) => {
 
             res.redirect(`/customers/${req.params.customerId}`);
           })
