@@ -59,8 +59,7 @@
                 <div style="text-align:center; "> 
                   <!-- Button to Open the Modal -->
                   <button type="button" class="btn btn-primary"><a href="/invoices/list" style="color:white; text-decoration: none;">Back to invoice List</a></button>
-                
-                
+                     
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
                     Edit invoice
                   </button>
@@ -118,6 +117,15 @@
                                 <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="<%=data.invoice.invoiceLineItems%>">
                                 <label for="memo">Memo:</label>
                                 <input type="text" id="memo" name="memo" class="form-control" value="<%=data.invoice.memo%>">
+                                <label for="paid">Paid:</label>
+                                <select name="paid" id="paid" class="form-control text-black">
+                                  <option value="<%=data.invoice.paid%>"><%=data.invoice.paid%></option>
+                                  <% if(data.invoice.paid == false){   %>
+                                      <option value="true">true</option>
+                                      <% }   else{ %>
+                                        <option value="false">false</option>
+                                        <%     } %>
+                                </select>
                             </div>
                             
                             
