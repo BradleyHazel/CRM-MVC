@@ -25,12 +25,25 @@
       </ul>
     </div>
   </nav>
-  <div class="col-md-6 container-fluid p-5 my-5 bg-primary text-black" style="text-align: center;">
-    <h2 class="text-white" style="text-align:center"><%=message%></h2>
-    <button class="btn btn-primary btn-lg" ><a class="nav-link text-white" href="/login" >Back to CRM login</a></button>
+  <div class="col-md-6 container-fluid p-5 my-5 bg-primary text-black">
+    <h2 class="text-white" style="text-align:center">Reset Password to Temporary Password</h2>
     &nbsp;
     &nbsp;
     &nbsp;
+  <form action="/reset" method="post">
+                    
+  <input class="form-control" type="text" name="username" id="username" 
+  placeholder="Username"  name="username" required/><br>
 
+  <input class="form-control" type="password" name="oldpassword" 
+  id="oldpassword" placeholder="Old Password"  name="oldpassword" required/><br>
+  <input class="form-control" type="password" name="newpassword" 
+  id="newpassword" placeholder="New Password"  name="newpassword" required/><br>
+
+              <br>
+  <input type="submit" id="submitDetails"  
+  name="submitDetails" value="Submit" /><br>
+            
+  </form>
             
 </div>

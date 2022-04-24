@@ -3,11 +3,16 @@
 require("dotenv").config();
 
 
+
 const express = require("express");
 const cors = require("cors");
 const methodOverride = require("method-override");
 const expressLayouts = require("express-ejs-layouts");
 const app = express();
+
+const flash = require('connect-flash');
+
+app.use(flash());
 
 app.use(
   require("express-session")({
@@ -23,6 +28,7 @@ app.set("layout login", false);
 app.set("layout register", false);
 app.set("layout forgot", false);
 app.set("layout confirmation", false);
+app.set("layout reset", false);
 
 app.use(cors());
 app.use(methodOverride("_method"));
@@ -89,7 +95,7 @@ app.post("/register", function (req, res) {
     function (err, user) {
       if (err) {
         console.log(err);
-        return res.render("register");
+        return res.render('confirmation',{ layout: "confirmation",message:err});
       }
 
       passport.authenticate("local")(req, res, function () {
@@ -144,6 +150,10 @@ app.get("/forgot", function (req, res) {
   res.render("forgot", { layout: "forgot" });
 });
 
+app.get("/reset", function (req, res) {
+  res.render("reset", { layout: "reset" });
+});
+
 // source https://stackoverflow.com/questions/1497481/javascript-password-generator
 function generatePassword() {
   var length = 8,
@@ -156,9 +166,6 @@ function generatePassword() {
 }
 
 app.post("/forgot", function (req, res) {
-
-
-
 
   User.findByUsername(req.body.username).then(function(sanitizedUser){
     if (sanitizedUser){
@@ -178,7 +185,7 @@ app.post("/forgot", function (req, res) {
       var mailOptions = {
       from: process.env.DEV_EMAIL,
       to: sanitizedUser.email,
-      subject: 'Sending Email using Node.js',
+      subject: 'CRM Password Reset',
       text: `Temp password: ${temp}`
         };
 
@@ -191,10 +198,10 @@ app.post("/forgot", function (req, res) {
         console.log('Email sent: ' + info.response);
       }
     });
-            res.redirect('/confirmation');
+            res.render('confirmation',{ layout: "confirmation",message:"Temporary Password Sent"});
         });
     } else {
-        res.status(500).json({message: 'This user does not exist'});
+      res.render('confirmation',{ layout: "confirmation",message:"This user does not exist!"});
     }
 },function(err){
     console.error(err);
@@ -206,8 +213,24 @@ app.post("/forgot", function (req, res) {
 
 
 
-/*
+app.post("/reset", function (req, res) {
+
+  User.findByUsername(req.body.username).then(function(sanitizedUser){
+    if (sanitizedUser){
+      
+        sanitizedUser.changePassword(req.body.oldpassword, req.body.newpassword, function(){
+            sanitizedUser.save();
 
 
+            res.render('confirmation',{ layout: "confirmation",message:"Password Reset!"});
+        });
+    } else {
+      res.render('confirmation',{ layout: "confirmation",message:"This user does not exist!"});
 
-*/
+    }
+},function(err){
+    console.error(err);
+})
+
+
+});
