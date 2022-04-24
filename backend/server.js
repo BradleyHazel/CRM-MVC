@@ -21,6 +21,8 @@ app.use(expressLayouts);
 
 app.set("layout login", false);
 app.set("layout register", false);
+app.set("layout forgot", false);
+app.set("layout confirmation", false);
 
 app.use(cors());
 app.use(methodOverride("_method"));
@@ -128,3 +130,84 @@ const loginlimiter = rateLimit({
 })
 
 app.use('/login', loginlimiter)
+
+
+
+
+const nodemailer = require('nodemailer');
+
+app.get("/confirmation", function (req, res) {
+  res.render("confirmation", { layout: "confirmation" });
+});
+
+app.get("/forgot", function (req, res) {
+  res.render("forgot", { layout: "forgot" });
+});
+
+// source https://stackoverflow.com/questions/1497481/javascript-password-generator
+function generatePassword() {
+  var length = 8,
+      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+      retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
+
+app.post("/forgot", function (req, res) {
+
+
+
+
+  User.findByUsername(req.body.username).then(function(sanitizedUser){
+    if (sanitizedUser){
+      let temp = generatePassword()
+        sanitizedUser.setPassword(temp, function(){
+            sanitizedUser.save();
+
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+      user: process.env.DEV_EMAIL,
+      pass: process.env.DEV_PASSWORD
+        }
+      });
+
+      var mailOptions = {
+      from: process.env.DEV_EMAIL,
+      to: sanitizedUser.email,
+      subject: 'Sending Email using Node.js',
+      text: `Temp password: ${temp}`
+        };
+
+
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+            res.redirect('/confirmation');
+        });
+    } else {
+        res.status(500).json({message: 'This user does not exist'});
+    }
+},function(err){
+    console.error(err);
+})
+
+
+});
+
+
+
+
+/*
+
+
+
+*/
