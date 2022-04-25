@@ -81,6 +81,8 @@ router.post("/add", (req, res) => {
     .catch(console.error);
 });
 
+
+
 router.delete("/:invoiceId", (req, res, next) => {
   Invoice.findOneAndDelete(
     { _id: req.params.invoiceId, owner: (req.user._id? req.user._id : req.user.id) },

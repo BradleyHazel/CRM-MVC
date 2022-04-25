@@ -82,6 +82,25 @@ router.get("/add", (req, res, next) => {
     .catch(next);
 });
 
+
+router.post("/:customerId/add-customerpage", (req, res) => {
+  // getting the current time
+  let date = getTodaysDate();
+  req.body.createdDate = `${date}`;
+  req.body.paid = false;
+  req.body.owner = (req.user._id? req.user._id : req.user.id);
+
+  
+  
+  Customer.find({ owner:req.body.owner, name:req.body.customer})
+    .then((customer) => {
+      Invoice.create(req.body)
+      .then(res.redirect(`/customers/`+req.params.customerId))
+      .catch(console.error);
+    })
+    .catch(console.error);
+});
+
 router.get("/:id", (req, res, next) => {
   let invoices = [];
   Customer.findById(req.params.id)
@@ -94,6 +113,7 @@ router.get("/:id", (req, res, next) => {
             customers: customers,
             invoices: invoices,
             username: (req.user._id? req.user.username : req.user.displayName),
+            pageid:req.params.id
           };
           res.render(`customer`, { data });
         }
@@ -176,6 +196,8 @@ router.put("/:customerId", (req, res) => {
     })
     .catch(console.error);
 });
+
+
 
 const customerController = router;
 module.exports = customerController;
