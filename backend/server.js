@@ -103,7 +103,7 @@ const GOOGLE_CLIENT_SECRET = process.env.CLIENT_SEC;
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://crm-mvc.herokuapp.com/google/callback"
+    callbackURL: process.env.CLIENT_REDIRECT
   },
   function(accessToken, refreshToken, profile, done) {
       userProfile=profile;
@@ -120,16 +120,6 @@ app.get('/google/callback',
     // Successful authentication, redirect success.
     res.redirect('/customers');
   });
-
-
-
-
-
-
-
-
-app.get('/success', (req, res) => res.send(userProfile));
-app.get('/error', (req, res) => res.send("error logging in"));
 
 app.post("/register", function (req, res) {
   var username = req.body.username;
