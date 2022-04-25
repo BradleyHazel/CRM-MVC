@@ -3,23 +3,29 @@ const router = express.Router();
 const Customer = require("../models/customer-model.js");
 const Invoice = require("../models/invoice-model");
 
+
+
+
+
 router.get("/list", (req, res, next) => {
-  Customer.find({ owner: req.user.username })
+  Customer.find({ owner: (req.user._id? req.user._id : req.user.id)})
     .then((customers) => {
       customers.sort((a, b) => a.name.localeCompare(b.name));
 
-      let data = { customers: customers, username: req.user.username };
+      let data = { customers: customers, username: (req.user._id? req.user.username : req.user.displayName) };
       res.render(`customerIndex`, { data });
     })
 
     .catch(next);
 });
 
+
 router.get("/", (req, res, next) => {
+
   let invoices = [];
-  Customer.find({ owner: req.user.username })
+  Customer.find({ owner: (req.user._id? req.user._id : req.user.id)  })
     .then((customers) => {
-      Invoice.find({ owner: req.user.username }).then((result) => {
+      Invoice.find({ owner: (req.user._id? req.user._id : req.user.id)      }).then((result) => {
         invoices.push(result);
         // loop through customers
         for (let i = 0; i < customers.length; i++) {
@@ -59,7 +65,7 @@ router.get("/", (req, res, next) => {
           invoices: invoices,
           countryNameArr: countryNameArr,
           countryCountArr: countryCountArr,
-          username: req.user.username,
+          username: (req.user._id? req.user.username : req.user.displayName),
         };
         res.render(`index`, { data });
       });
@@ -68,9 +74,9 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/add", (req, res, next) => {
-  Customer.find({ owner: req.user.username })
+  Customer.find({ owner: (req.user._id? req.user._id : req.user.id) })
     .then((customers) => {
-      let data = { customers: customers, username: req.user.username };
+      let data = { customers: customers, username: (req.user._id? req.user.username : req.user.displayName) };
       res.render(`add`, { data });
     })
     .catch(next);
@@ -80,14 +86,14 @@ router.get("/:id", (req, res, next) => {
   let invoices = [];
   Customer.findById(req.params.id)
     .then((customers) => {
-      Invoice.find({ customer: customers.name, owner: req.user.username }).then(
+      Invoice.find({ customer: customers.name, owner: (req.user._id? req.user._id : req.user.id) }).then(
         (result) => {
           invoices.push(result);
 
           let data = {
             customers: customers,
             invoices: invoices,
-            username: req.user.username,
+            username: (req.user._id? req.user.username : req.user.displayName),
           };
           res.render(`customer`, { data });
         }
@@ -122,18 +128,18 @@ router.post("/add", (req, res) => {
   // getting the current time
   let date = getTodaysDate();
   req.body.createdDate = `${date}`;
-  req.body.owner = req.user.username;
+  req.body.owner = (req.user._id? req.user._id : req.user.id);
   Customer.create(req.body).then(res.redirect("/customers"));
 });
 
 router.delete("/:customerId", (req, res) => {
   Customer.findOneAndDelete({
     _id: req.params.customerId,
-    owner: req.user.username,
+    owner: (req.user._id? req.user._id : req.user.id),
   }).then((customer) => {
     Invoice.deleteMany({
       customer: customer.name,
-      owner: req.user.username,
+      owner: (req.user._id? req.user._id : req.user.id),
     }).then(() => {
       res.redirect("/customers");
     });
@@ -144,18 +150,18 @@ router.put("/:customerId", (req, res) => {
   let invoices = [];
   Customer.findById(req.params.customerId)
     .then((customers) => {
-      Invoice.find({ customer: customers.name, owner: req.user.username }).then(
+      Invoice.find({ customer: customers.name, owner: (req.user._id? req.user._id : req.user.id) }).then(
         (result) => {
           invoices.push(result);
 
           Invoice.updateMany(
-            { customer: customers.name, owner: req.user.username },
+            { customer: customers.name, owner: (req.user._id? req.user._id : req.user.id) },
             { customer: req.body.name }
           )
             .then((invoice) => {})
             .then(() => {
               Customer.findOneAndUpdate(
-                { _id: req.params.customerId, owner: req.user.username },
+                { _id: req.params.customerId, owner: (req.user._id? req.user._id : req.user.id) },
                 req.body,
                 { new: true }
               )

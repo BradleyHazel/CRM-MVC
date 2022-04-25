@@ -5,20 +5,20 @@ const Customer = require("../models/customer-model");
 
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
-  Invoice.find({ owner: req.user.username })
+  Invoice.find({ owner: (req.user._id? req.user._id : req.user.id) })
     .then((invoices) => {
       invoices.sort((a, b) => a.customer.localeCompare(b.customer));
-      let data = { invoices: invoices, username: req.user.username };
+      let data = { invoices: invoices, username: (req.user._id? req.user.username : req.user.displayName) };
       res.render(`invoiceIndex`, { data });
     })
     .catch(next);
 });
 
 router.get("/add", (req, res, next) => {
-  Customer.find({ owner: req.user.username })
+  Customer.find({ owner: (req.user._id? req.user._id : req.user.id) })
     .then((customers) => {
       customers.sort((a, b) => a.name.localeCompare(b.name));
-      let data = { customers: customers, username: req.user.username };
+      let data = { customers: customers, username: (req.user._id? req.user.username : req.user.displayName) };
       res.render(`addinvoice`, { data });
     })
     .catch(next);
@@ -27,9 +27,9 @@ router.get("/add", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   Invoice.findById(req.params.id)
     .then((invoice) => {
-      Customer.find({ name: invoice.customer, owner: req.user.username })
+      Customer.find({ name: invoice.customer, owner: (req.user._id? req.user._id : req.user.id) })
         .then((customer) => {
-          Customer.find({ owner: req.user.username }).then((customers) => {
+          Customer.find({ owner: (req.user._id? req.user._id : req.user.id) }).then((customers) => {
             customer = customer[0];
 
             customers.sort((a, b) => a.name.localeCompare(b.name));
@@ -38,7 +38,7 @@ router.get("/:id", (req, res, next) => {
               invoice: invoice,
               customer: customer,
               customers: customers,
-              username: req.user.username,
+              username: (req.user._id? req.user.username : req.user.displayName),
             };
             res.render(`invoice`, { data });
           });
@@ -75,7 +75,7 @@ router.post("/add", (req, res) => {
   let date = getTodaysDate();
   req.body.createdDate = `${date}`;
   req.body.paid = false;
-  req.body.owner = req.user.username;
+  req.body.owner = (req.user._id? req.user._id : req.user.id);
   Invoice.create(req.body)
     .then(res.redirect("/invoices/list"))
     .catch(console.error);
@@ -83,7 +83,7 @@ router.post("/add", (req, res) => {
 
 router.delete("/:invoiceId", (req, res, next) => {
   Invoice.findOneAndDelete(
-    { _id: req.params.invoiceId, owner: req.user.username },
+    { _id: req.params.invoiceId, owner: (req.user._id? req.user._id : req.user.id) },
     () => {
       res.redirect("/invoices/list");
     }
@@ -92,7 +92,7 @@ router.delete("/:invoiceId", (req, res, next) => {
 
 router.put("/:invoiceId", (req, res) => {
   Invoice.findOneAndUpdate(
-    { _id: req.params.invoiceId, owner: req.user.username },
+    { _id: req.params.invoiceId, owner: (req.user._id? req.user._id : req.user.id) },
     req.body,
     { new: true }
   )

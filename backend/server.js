@@ -1,5 +1,5 @@
 // https://www.geeksforgeeks.org/login-form-using-node-js-and-mongodb/
-
+// https://www.loginradius.com/blog/engineering/google-authentication-with-nodejs-and-passportjs/
 require("dotenv").config();
 
 
@@ -18,7 +18,7 @@ app.use(
   require("express-session")({
     secret: process.env.DEV_USER_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
   })
 );
 
@@ -81,9 +81,55 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+
+
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+var userProfile;
+
+ 
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GOOGLE_CLIENT_ID = process.env.CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.CLIENT_SEC;
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "https://crm-mvc.herokuapp.com/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+      userProfile=profile;
+      return done(null, userProfile);
+  }
+));
+ 
+app.get('/google', 
+  passport.authenticate('google', { scope : ['profile', 'email'] }));
+ 
+app.get('/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/error' }),
+  function(req, res) {
+    // Successful authentication, redirect success.
+    res.redirect('/customers');
+  });
+
+
+
+
+
+
+
+
+app.get('/success', (req, res) => res.send(userProfile));
+app.get('/error', (req, res) => res.send("error logging in"));
 
 app.post("/register", function (req, res) {
   var username = req.body.username;
