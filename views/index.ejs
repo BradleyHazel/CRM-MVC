@@ -42,6 +42,7 @@
         <canvas id="myChart" style="width:100%;max-width:900px; display: inline; " ></canvas>
         <canvas id="myChart2" style="width:100%;max-width:900px; display: inline; "></canvas>
         <canvas id="myChart3" style="width:100%;max-width:900px; display: inline; "></canvas>
+        <canvas id="myChart4" style="width:100%;max-width:900px; display: inline; "></canvas>
       </div>
       </div>
       </div>
@@ -67,7 +68,8 @@
 <div id="colorArry" data-amount="<%= colors %>"></div>
 <div id="countryNameArr" data-countryname="<%= data.countryNameArr %>"></div>
 <div id="countryCountArr" data-countrycount="<%= data.countryCountArr %>"></div>
-
+<div id="monthNameArr" data-monthnamearr="<%= data.monthNameArr %>"></div>
+<div id="monthAmountArr" data-monthamountarr="<%= data.monthAmountArr %>"></div>
 
 <script>       
 
@@ -75,6 +77,8 @@
   var number = document.getElementById('invoiceNumber').dataset.number
   var amount = document.getElementById('invoiceAmount').dataset.amount
   var colors = document.getElementById('colorArry').dataset.amount
+  var monthNameArr = document.getElementById('monthNameArr').dataset.monthnamearr
+  var monthAmountArr = document.getElementById('monthAmountArr').dataset.monthamountarr
 
   var countryName1 = document.getElementById('countryNameArr').dataset.countryname
   var countryCount1 = document.getElementById('countryCountArr').dataset.countrycount
@@ -87,6 +91,10 @@
 }  const invoiceNumbers = number.split(",");
   const invoiceAmounts = amount.split(",");
   const colorArr = colors.split(",");
+
+  const monthNameArr1 = monthNameArr.split(",");
+  const monthAmountArr1 = monthAmountArr.split(",");
+
   const countrys = countryName1.split(",");
   const countrycount = countryCount1.split(",");
   new Chart(document.getElementById("myChart"), {
@@ -185,6 +193,46 @@ new Chart("myChart3", {
     }
   }
 });
+
+
+new Chart(document.getElementById("myChart4"), {
+    type: 'line',
+    data: {
+      labels: monthNameArr1,
+      datasets: [
+        {
+          label: "Invoice Amount by Month for the last 12 months",
+          backgroundColor: colorArr,
+          data: monthAmountArr1,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }
+      ]
+    },
+    options: {
+        scales: {
+        yAxes: [{
+          
+            display: true,
+            stacked: true,
+            ticks: {
+              callback: function(value, index, ticks) {
+                        return '$' + value;
+                    },
+                min: 0, // minimum value
+            }
+        }]
+    },
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Invoice Amount by Month for the last 12 months'
+      }
+    }
+});
+
+
 </script>
 <div>&nbsp;</div>
 <div>&nbsp;</div>

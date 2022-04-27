@@ -1,7 +1,8 @@
 [
   {
     "name": "Apple",
-    "owner": "demo",
+    "owner": 
+    "62644fc19a7c195e6caab8bd",
     "email": "Apple@gmail.com",
     "phone": "555-555-5555",
     "address": "3921 Street Rd",
@@ -15,7 +16,7 @@
   },
   {
     "name": "Microsoft",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Microsoft@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -29,7 +30,7 @@
   },
   {
     "name": "Slack",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Slack@gmail.com",
     "phone": "555-555-5555",
     "address": "3921 Street Rd",
@@ -43,7 +44,7 @@
   },
   {
     "name": "Google",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Google@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -57,7 +58,7 @@
   },
   {
     "name": "Hulu",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Hulu@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -71,7 +72,7 @@
   },
   {
     "name": "Netflix",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Netflix@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -85,7 +86,7 @@
   },
   {
     "name": "AT&T",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "AT&T@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -99,7 +100,7 @@
   },
   {
     "name": "Comcast",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Comcast@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -113,7 +114,7 @@
   },
   {
     "name": "Gamestop",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Gamestop@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -127,7 +128,7 @@
   },
   {
     "name": "Best Buy",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Best Buy@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -141,7 +142,7 @@
   },
   {
     "name": "Truist",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Truist@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -155,7 +156,7 @@
   },
   {
     "name": "Samsung",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Samsung@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -169,7 +170,7 @@
   },
   {
     "name": "Amazon",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Amazon@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -183,7 +184,7 @@
   },
   {
     "name": "Snapchat",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Snapchat@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -197,7 +198,7 @@
   },
   {
     "name": "Facebook",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Facebook@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -211,7 +212,7 @@
   },
   {
     "name": "Instagram",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Instagram@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -225,7 +226,7 @@
   },
   {
     "name": "Venmo",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Venmo@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -239,7 +240,7 @@
   },
   {
     "name": "Reddit",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Reddit@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -253,7 +254,7 @@
   },
   {
     "name": "Spotify",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Spotify@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -267,7 +268,7 @@
   },
   {
     "name": "Tik Tok",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "TikTok@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -281,7 +282,7 @@
   },
   {
     "name": "Postmates",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Postmates@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -295,7 +296,7 @@
   },
   {
     "name": "LinkedIn",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "LinkedIn@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
@@ -309,7 +310,7 @@
   },
   {
     "name": "Adidas",
-    "owner": "demo",
+    "owner": "62644fc19a7c195e6caab8bd",
     "email": "Adidas@gmail.com",
     "phone": "555-555-5555",
     "address": "3123 Street Rd",
