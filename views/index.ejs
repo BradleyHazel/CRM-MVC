@@ -55,6 +55,7 @@
 <% while(customerNameString.includes(" ")){customerNameString= customerNameString.replaceAll(" ", "_")} %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/regression/1.4.0/regression.min.js"></script>
 
 <div id="customerName" data-name=<%= customerNameString %>></div>
 <div id="invoiceNumber" data-number=<%= invoiceNumberArry %>></div>
@@ -248,7 +249,7 @@ new Chart(document.getElementById("myChart4"), {
 
 
 <script>
-  var xArray = [1,2,3,4,5,6,7,8,9,10,11,12];
+  var xArray = [0,1,2,3,4,5,6,7,8,9,10,11];
   var yArray = [];
   for(let f=0;f<monthAmountArr1.length;f++){
     yArray.push(monthAmountArr1[f])
@@ -259,6 +260,27 @@ new Chart(document.getElementById("myChart4"), {
     total = total + parseInt(amt)
   })
   // Calculate Slope
+  let datapass = []
+  for(let w=0;w<xArray.length;w++){
+    let data1 = [parseInt(xArray[w]),parseInt(yArray[w])];
+    datapass.push(data1)
+  }
+
+  var rawData = [
+  [0.1, 2.1],
+  [1, 2.4],
+  [2, 2.6],
+  [4, 2.8],
+  [5, 3]
+];
+
+var result = regression('linear', datapass);
+var coeff = result.equation;
+ 
+ // const result = regression.linear(datapass);
+console.log(result)
+console.log(coeff)
+
   var xSum = xArray.reduce(function(a, b){return a + b;}, 0);
   var ySum = total
   var slope = ySum / xSum;
@@ -267,24 +289,21 @@ new Chart(document.getElementById("myChart4"), {
   // Generate values
   var xValues = [];
   var yValues = [];
-  for (var x =1; x <= 24; x += 1) {
+  for (var x =0; x <= 24; x += 1) {
     xValues.push(x);
-    yValues.push(x * slope);
+    yValues.push((x * coeff[0])+coeff[1]);
 
     
   }
 
-  var max = monthAmountArr1.reduce(function(a, b) {
-    return Math.max(a, b);
-}, -Infinity);
-  max = max*1.2
+  
   var data = [
     {x:xArray, y:yArray, mode:"markers", name:"Real Revenue"},
     {x:xValues, y:yValues, mode:"line",name:"Rev Projection"},
   ];
   
   var layout = {
-    xaxis: {range: [1, 24], title: "Months"},
+    xaxis: {range: [0, 24], title: "Months"},
     yaxis: {range: [0, yValues[yValues.length]], title: "Revenue"},  
     title: "One Year Revenue Projection",
     showlegend:false,
