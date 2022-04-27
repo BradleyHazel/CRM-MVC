@@ -20,7 +20,7 @@
           <h4 style="padding-top:11px; text-align:center">Customer List</h4>
           
               
-          <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(cust.invoicenumber >0){ let selectedColor =  Math.floor(Math.random()*colors.length) ; customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) ; } %> 
+          <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(true){ let selectedColor =  Math.floor(Math.random()*colors.length) ; customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) ; } %> 
                 <div class="dropdown">
                     <button type="button" class="btn dropdown-toggle list-group-item list-group-item-action" data-bs-toggle="dropdown" style="color:darkcyan;">
                       <%=cust.name %>
@@ -254,7 +254,6 @@ new Chart(document.getElementById("myChart4"), {
   for(let f=0;f<monthAmountArr1.length;f++){
     yArray.push(monthAmountArr1[f])
   }
-  console.log(yArray)
   let total = 0
   yArray.forEach(amt=>{
     total = total + parseInt(amt)
@@ -278,8 +277,6 @@ var result = regression('linear', datapass);
 var coeff = result.equation;
  
  // const result = regression.linear(datapass);
-console.log(result)
-console.log(coeff)
 
   var xSum = xArray.reduce(function(a, b){return a + b;}, 0);
   var ySum = total

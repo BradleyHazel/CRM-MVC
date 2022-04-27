@@ -104,5 +104,27 @@ router.put("/:invoiceId", (req, res) => {
     .catch(console.error);
 });
 
+
+router.put("/fromcustomer/:invoiceId", (req, res) => {
+  Invoice.findOneAndUpdate(
+    { _id: req.params.invoiceId, owner: (req.user._id? req.user._id : req.user.id) },
+    req.body,
+    { new: true }
+  )
+    .then((inv) => {
+
+
+      Customer.find({ name: inv.customer, owner: (req.user._id? req.user._id : req.user.id) })
+        .then((customer) => {
+          res.redirect(`/customers/${customer[0]._id}`);
+        })
+   
+    })
+    .catch(console.error);
+});
+
+
+
+
 const invoiceController = router;
 module.exports = invoiceController;
