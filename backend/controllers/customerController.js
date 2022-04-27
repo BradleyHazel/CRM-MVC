@@ -141,7 +141,7 @@ router.get("/", (req, res, next) => {
               else if((result[c].dueDate.slice(5,7))=="11"){
                 nov.amount =  nov.amount+parseInt(result[c].amount)
               }
-              else if((result[c].dueDate.slice(5,7))=="11"){
+              else if((result[c].dueDate.slice(5,7))=="12"){
                 dec.amount =  dec.amount+parseInt(result[c].amount)
               }
            
@@ -153,6 +153,7 @@ router.get("/", (req, res, next) => {
           
         }
         let monthArr ;
+
 
         if(thismonth == "1"){
           monthArr = [feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec,jan]
