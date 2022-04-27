@@ -207,9 +207,12 @@ router.get("/", (req, res, next) => {
           for (let j = 0; j < result.length; j++) {
             // if the customer name matches the invoice name increase the invoice count
             if (customers[i].name == result[j].customer) {
+              if(result[j].paid == false){
               customers[i].invoicenumber++;
+            
+              }
               customers[i].invoicetotal =
-                customers[i].invoicetotal + result[j].amount;
+              customers[i].invoicetotal + result[j].amount;
             }
           }
         }
