@@ -36,7 +36,22 @@
                       </div>
                       &nbsp
                       <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">Paid: <%=data.invoice.paid %></div>
+                        <div class="col-sm-4 text-black">Paid: <%=data.invoice.paid %><% if (data.invoice.paid== true){ %>
+                          ✅
+                          <% }%>
+                          <% if (data.invoice.paid == false){ %>
+                          ❌
+                          <% }%> 
+                        
+                          <form action="/invoices/<%=data.invoice._id%>/?_method=put" style="display:inline; padding-left: 5pxç;" method="POST">
+                            <% if(data.invoice.paid == false){ %>
+                            <button class="btn-sm btn-primary" name="paid" style="display:inline" value="true">Mark as Paid</button>
+                           <% } %>
+                           <% if(data.invoice.paid == true){ %>
+                            <button class="btn-sm btn-primary" style="display:inline" name="paid" value="false">Mark as Not Paid</button>
+                            <% } %>
+                          </form>
+                        </div>
                         <div class="col-sm-4 text-black">Billing Address: <%=data.invoice.billingAddress %></div>
                         <div class="col-sm-4 text-black">Invoice Line Items: <%=data.invoice.invoiceLineItems %></div>
                         </div>
@@ -68,6 +83,8 @@
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
                     Edit invoice
                   </button>
+
+      
                   
                   <!-- The Modal -->
                   <div class="modal" id="myModal">

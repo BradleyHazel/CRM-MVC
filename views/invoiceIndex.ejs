@@ -15,11 +15,17 @@
                                                     <ul class="col-md-12 list-group" >
                                                             
                                                                 <h4>Invoice List</h4>
-                                                                <input type="text" id="invoiceField" onkeyup="sortInvoiceList()" placeholder="Search for invoice by name, amount, or due date:" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
+                                                                <input type="text" id="invoiceField" onkeyup="sortInvoiceList()" placeholder="Search for invoice by name, amount, due date, or paid status" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
                                                                 <ul id="invoiceEntry" style=" list-style-type: none; padding: 0; margin: 0;">
                                                         <% data.invoices.forEach(inv =>{ %> 
                                                                 
-                                                                    <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;"> <%=inv.customer %> | $<%=inv.amount %> | <%=inv.dueDate %></a></li>
+                                                                    <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;"> <%=inv.customer %> | $<%=inv.amount %> | <%=inv.dueDate %> | Paid status: <%=inv.paid %>  <% if (inv.paid == true){ %>
+                                                                      ✅
+                                                                      <% }%>
+                                                                      <% if (inv.paid == false){ %>
+                                                                      ❌
+                                                                      <% }%> 
+                                                                    </a></li>
                                                                       
                                                         <% }) %> 
                                                     </ul>

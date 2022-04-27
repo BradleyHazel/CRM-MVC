@@ -27,7 +27,7 @@
           <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
 
                 <div class="jumbotron">
-                  <h3 >Customer Summary Dashboard</h3>
+                  <h3 >Customer Details </h3>
                   &nbsp
                   <div style="display: flex; flex-direction: row;">
                   <div class="card col-sm-2" style="width:100px" >
@@ -78,7 +78,14 @@
                         <ul id="invoiceEntry" style=" list-style-type: none; padding: 0; margin: 0;">
                 <% data.invoices[0].forEach(inv =>{ %> 
                         
-                            <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;">Amount: $<%=inv.amount %> | Due: $<%=inv.dueDate %> | Paid status: <%=inv.paid %>  </a></li>
+                            <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;">Amount: $<%=inv.amount %> | Due: $<%=inv.dueDate %> | Paid status: <%=inv.paid %>  <% if (inv.paid == true){ %>
+                              ✅
+                              <% }%>
+                              <% if (inv.paid == false){ %>
+                              ❌
+                              <% }%> </a>
+                           
+                            </li>
                             <form action="/invoices/fromcustomer/<%=inv._id%>/?_method=put" method="POST">
                               <% if(inv.paid == false){ %>
                               <button class="btn btn-primary btn-block" name="paid" value="true">Mark as Paid</button>
