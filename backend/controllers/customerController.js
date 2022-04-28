@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Customer = require("../models/customer-model.js");
 const Invoice = require("../models/invoice-model");
-
-
-
+const Log = require("../models/log-model");
 
 
 router.get("/list", (req, res, next) => {
@@ -260,6 +258,15 @@ router.get("/add", (req, res, next) => {
     .catch(next);
 });
 
+function generateLog(reqBodyOwner,reqBody,message){
+
+  let stamp = Date();
+  let logdata = {owner:reqBodyOwner,timestamp:stamp,details:reqBody,action:message}
+
+  Log.create(logdata).then(()=>{
+    console.log(logdata)
+  })
+}
 
 router.post("/:customerId/add-customerpage", (req, res) => {
   // getting the current time
@@ -275,6 +282,10 @@ router.post("/:customerId/add-customerpage", (req, res) => {
       Invoice.create(req.body)
       .then(res.redirect(`/customers/`+req.params.customerId))
       .catch(console.error);
+
+      generateLog(req.body.owner,req.body,"Invoice created from customer page")
+      
+
     })
     .catch(console.error);
 });
@@ -328,6 +339,9 @@ router.post("/add", (req, res) => {
   req.body.createdDate = `${date}`;
   req.body.owner = (req.user._id? req.user._id : req.user.id);
   Customer.create(req.body).then(res.redirect("/customers"));
+
+  generateLog(req.body.owner,req.body,"New Customer created.")
+      
 });
 
 router.delete("/:customerId", (req, res) => {
@@ -335,6 +349,7 @@ router.delete("/:customerId", (req, res) => {
     _id: req.params.customerId,
     owner: (req.user._id? req.user._id : req.user.id),
   }).then((customer) => {
+    generateLog(customer.owner,customer,"Customer and invoices deleted");
     Invoice.deleteMany({
       customer: customer.name,
       owner: (req.user._id? req.user._id : req.user.id),
@@ -364,6 +379,7 @@ router.put("/:customerId", (req, res) => {
                 { new: true }
               )
                 .then((customer) => {
+                  generateLog(customer.owner,req.body,"Customer updated ");
                   res.redirect(`/customers/${req.params.customerId}`);
                 })
                 .catch(console.error);
@@ -374,8 +390,6 @@ router.put("/:customerId", (req, res) => {
     })
     .catch(console.error);
 });
-
-
 
 const customerController = router;
 module.exports = customerController;

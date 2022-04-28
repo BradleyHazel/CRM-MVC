@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 const Invoice = require("../models/invoice-model");
 const Customer = require("../models/customer-model");
+const Log = require("../models/log-model");
+
+function generateLog(reqBodyOwner,reqBody,message){
+
+  let stamp = Date();
+  let logdata = {owner:reqBodyOwner,timestamp:stamp,details:reqBody,action:message}
+
+  Log.create(logdata).then(()=>{
+    console.log(logdata)
+  })
+}
 
 // Index: GET all the Invoices
 router.get("/list", (req, res, next) => {
@@ -79,14 +90,17 @@ router.post("/add", (req, res) => {
   Invoice.create(req.body)
     .then(res.redirect("/invoices/list"))
     .catch(console.error);
+  generateLog(req.body.owner,req.body,"New Invoice created.")
 });
 
-
-
 router.delete("/:invoiceId", (req, res, next) => {
+
+  let owner = (req.user._id? req.user._id : req.user.id)
+  
   Invoice.findOneAndDelete(
-    { _id: req.params.invoiceId, owner: (req.user._id? req.user._id : req.user.id) },
+    { _id: req.params.invoiceId, owner: owner },
     () => {
+      generateLog(owner,req.params.invoiceId,"Invoice deleted.")
       res.redirect("/invoices/list");
     }
   ).catch(console.error);
@@ -98,12 +112,13 @@ router.put("/:invoiceId", (req, res) => {
     req.body,
     { new: true }
   )
-    .then(() => {
+    .then((invoice) => {
+
+      generateLog(invoice.owner,req.body,"Invoice updated ");
       res.redirect(`/invoices/${req.params.invoiceId}`);
     })
     .catch(console.error);
 });
-
 
 router.put("/fromcustomer/:invoiceId", (req, res) => {
   Invoice.findOneAndUpdate(
@@ -113,6 +128,7 @@ router.put("/fromcustomer/:invoiceId", (req, res) => {
   )
     .then((inv) => {
 
+      generateLog(inv.owner,req.body,"Invoice updated ");
 
       Customer.find({ name: inv.customer, owner: (req.user._id? req.user._id : req.user.id) })
         .then((customer) => {
@@ -122,9 +138,6 @@ router.put("/fromcustomer/:invoiceId", (req, res) => {
     })
     .catch(console.error);
 });
-
-
-
 
 const invoiceController = router;
 module.exports = invoiceController;
