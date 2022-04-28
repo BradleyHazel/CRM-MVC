@@ -1,32 +1,22 @@
-
   <ul class="navbar-nav">
-<div class="nav-item text-white"> Logged in as: <%= data.username %></div>
-
-<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-</ul>
+    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
+  </ul>
 </nav>
-
-
-
 <div class="col-md-10 container p-5 my-5 bg-primary text-white">
   <div class="jumbotron">
     <h3 style="padding-left: 20px;">Add Invoice</h3>
-
     <form action='/invoices/add' method='POST'>
-
       <div class="mb-3 col-md-12" style="display:flex">
         <div class="row col-md-4" style="display:inline-block">
-            <label for="customer" class="form-label text-black" style="display:inline-block">Customer:</label>
-         
+          <label for="customer" class="form-label text-black" style="display:inline-block">Customer:</label>
           <select name="customer" id="customer" class="form-control text-black" required>
             <% data.customers.forEach(cust =>{ %>
             <option value="<%=cust.name%>"><%=cust.name%></option>
         <%  }) %> 
           </select>
-
           <label for="invoiceDate" class="form-label text-black" style="display:inline-block" required>Invoice Date:</label>        
-        <input type="date" id="invoiceDate" name="invoiceDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
-
+          <input type="date" id="invoiceDate" name="invoiceDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
           <label for="billingAddress" class="form-label text-black">Billing Address:</label>
           <input type="text" class="form-control" id="billingAddress" placeholder="Enter Billing Address" name="billingAddress">
           <label for="paymentInfo" class="form-label text-black">Payment Information:</label>
@@ -42,45 +32,31 @@
                 input.value = '';
                 }
           </script>
-
-        <label for="contactName" class="form-label text-black">Contact Name:</label>
-        <input type="text" class="form-control" id="contactName" placeholder="Enter Contact Name" name="contactName">
-
-        <label for="invoiceLineItems" class="form-label text-black">Line Items:</label>
-        <input type="text" class="form-control" id="invoiceLineItems" placeholder="Enter Line Items" name="invoiceLineItems">
-
-        <label for="paid" class="form-label text-black">Paid:</label>
-        <select name="paid" id="paid" class="form-control text-black">
-          <option value="false">false</option>
-              <option value="true">true</option>
-            
-        </select>
-      </div>
+          <label for="contactName" class="form-label text-black">Contact Name:</label>
+          <input type="text" class="form-control" id="contactName" placeholder="Enter Contact Name" name="contactName">
+          <label for="invoiceLineItems" class="form-label text-black">Line Items:</label>
+          <input type="text" class="form-control" id="invoiceLineItems" placeholder="Enter Line Items" name="invoiceLineItems">
+          <label for="paid" class="form-label text-black">Paid:</label>
+          <select name="paid" id="paid" class="form-control text-black">
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
       <div class="row col-md-4" style="display:inline-block">
-
         <label for="dueDate" class="form-label text-black" style="display:inline-block" required>Due Date:</label>
-      <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
-
-      <label for="contactNumber" class="form-label text-black">Contact Number:</label>
-      <input type="tel" class="form-control" id="contactNumber" name="contactNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Enter Contact Number">
-
-      <label for="memo" class="form-label text-black">Memo:</label>
-      <input type="photo" class="form-control" id="memo" placeholder="Enter memo" name="memo">
-    </div>
-        
+        <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
+        <label for="contactNumber" class="form-label text-black">Contact Number:</label>
+        <input type="tel" class="form-control" id="contactNumber" name="contactNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Enter Contact Number">
+        <label for="memo" class="form-label text-black">Memo:</label>
+        <input type="photo" class="form-control" id="memo" placeholder="Enter memo" name="memo">
+      </div>  
       </div>
-
       <div class="mb-3 mt-3">
-
       </div>
-
       <button type="submit" class="btn btn-primary">Submit</button>
-
     </form>
-
   </div>
 </div>
-
 <div class="container-fluid ">
   <div style="text-align:center"> 
     <div>&nbsp;</div>

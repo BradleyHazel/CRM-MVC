@@ -1,37 +1,24 @@
-
   <ul class="navbar-nav">
-    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
-    
+    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>  
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-    </ul>
-    </nav>
+  </ul>
+</nav>
 <% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
 <div class="container-fluid ">
-    
-              <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
-    
-                    <div class="jumbotron">
-                        <div class="container-fluid row">
-
-                                <ul class="col-md-12 list-group" >
-                                        
-                                            <h4>Log List</h4>
-                                        
-                                            <ul id="logList" style=" list-style-type: none; padding: 0; margin: 0;">
-                                    <% data.logs.forEach(log =>{ %> 
-
-                                                <li class="btn list-group-item list-group-item-action" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 12px; color: black; display: block;"><b>Timestamp:</b> <%=log.timestamp %> </br> <b>Details:</b> <%=JSON.stringify(log.details) %> </br> <b>Action:</b> <%=log.action %></li>
-                                                  
-                                    <% }) %> 
-                                </ul>
-                            </ul>
-                            
-                            
-                            </div>
+  <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
+    <div class="jumbotron">
+      <div class="container-fluid row">
+        <ul class="col-md-12 list-group" >
+          <h4>Log List</h4>
+          <ul id="logList" style=" list-style-type: none; padding: 0; margin: 0;">
+            <% data.logs.forEach(log =>{ %> 
+            <li class="btn list-group-item list-group-item-action" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 12px; color: black; display: block;"><b>Timestamp:</b> <%=log.timestamp %> </br> <b>Details:</b> <%=JSON.stringify(log.details) %> </br> <b>Action:</b> <%=log.action %></li>
+            <% }) %> 
+          </ul>
+        </ul>
+      </div>
     </div>
-    
-                    </div>
-                    </div>
-                    </div>
-    
+  </div>
+</div>
+ 
    

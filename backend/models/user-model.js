@@ -1,4 +1,3 @@
-// require the mongoose package from the connection pool
 const mongoose = require("../connection");
 var passportLocalMongoose = require("passport-local-mongoose");
 
@@ -11,5 +10,4 @@ userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", userSchema);
 
-// export the newly created model
 module.exports = User;

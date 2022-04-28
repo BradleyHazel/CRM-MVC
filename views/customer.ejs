@@ -1,17 +1,12 @@
-
   <ul class="navbar-nav">
     <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
-    
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-    </ul>
-    </nav>
+  </ul>
+</nav>
 <div class="container-fluid " >
-  &nbsp;
-
-            
-                <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%= data.customers._id %>">
-                        <%=data.customers.name %></a></h6>
-
+  &nbsp;    
+  <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%= data.customers._id %>">
+    <%=data.customers.name %></a></h6>
 <script>
   function dontAllowWhiteSpace(input){
     // code https://stackoverflow.com/questions/50738490/prevent-a-white-space-in-the-beginning-of-a-input
@@ -19,72 +14,62 @@
       input.value = '';
       }
 </script>
-
-          <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
-
-                <div class="jumbotron">
-                  <h3 >Customer Details </h3>
-                  &nbsp
-                  <div style="display: flex; flex-direction: row;">
-                  <div class="card col-sm-2" style="width:100px" >
-                        <img class="card-img-top"  src="<%= (data.customers.photo ? data.customers.photo : 'https://www.w3schools.com/bootstrap5/img_avatar1.png') %>" alt="Card image">
-                        <div class="card-body" >
-                          <p class="card-title text-black"> Name: <%=data.customers.name %></p>
-                  
-                        </div>
-                        
-                      </div>
-                      <div class="col-sm-10" style="display: inline-block">
-                        <div style="display: inline">
-                      <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black ">Email: <%=data.customers.email %></div>
-                        <div class="col-sm-4 text-black">Phone: <%=data.customers.phone %></div>
-                        <div class="col-sm-4 text-black">Website: <a href="<%=data.customers.website %>"><%=data.customers.website %></a></div>
-                      </div>
-                      &nbsp
-                      <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">Address: <%=data.customers.address %></div>
-                        <div class="col-sm-4 text-black ">City: <%=data.customers.city %></div>
-                        <div class="col-sm-4 text-black">Zip Code: <%=data.customers.zip %></div>
-                      </div>
-                      &nbsp
-                      <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">Notes: <%=data.customers.notes %></div>
-                        <div class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></div>
-                        <div class="col-sm-4 text-black">Country: <%=data.customers.country %></div>
-                        </div>
-                        &nbsp
-                        <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black">State: <%=data.customers.state %></div>
-                      </div>
-                        <div class="col-sm-4 text-black"></div>
-                      </div>
-                      </div>
-                    </div>
-
-
-                    &nbsp
-                    <div style="display: flex; flex-direction: row;">
-                    
-                      <ul class="col-md-12 list-group" >
-                                                            
-                        <h3>Invoice List</h3>
-
-                    &nbsp
-                        <ul id="invoiceEntry" style=" list-style-type: none; padding: 0; margin: 0;">
-                <% data.invoices[0].forEach(inv =>{ %> 
-                        
-                            <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;">Amount: $<%=inv.amount %> | Due: $<%=inv.dueDate %> | Paid status: <%=inv.paid %>  <% if (inv.paid == true){ %>
-                              ✅
-                              <% }%>
-                              <% if (inv.paid == false){ %>
-                              ❌
-                              <% }%> </a>
+  <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
+    <div class="jumbotron">
+      <h3 >Customer Details </h3>
+      &nbsp
+      <div style="display: flex; flex-direction: row;">
+        <div class="card col-sm-2" style="width:100px" >
+          <img class="card-img-top"  src="<%= (data.customers.photo ? data.customers.photo : 'https://www.w3schools.com/bootstrap5/img_avatar1.png') %>" alt="Card image">
+            <div class="card-body" >
+              <p class="card-title text-black"> Name: <%=data.customers.name %></p>
+            </div>
+        </div>
+        <div class="col-sm-10" style="display: inline-block">
+          <div style="display: inline">
+            <div class="row" style="padding-left: 20px;">
+              <div class="col-sm-4 text-black ">Email: <%=data.customers.email %></div>
+              <div class="col-sm-4 text-black">Phone: <%=data.customers.phone %></div>
+              <div class="col-sm-4 text-black">Website: <a href="<%=data.customers.website %>"><%=data.customers.website %></a></div>
+            </div>
+            &nbsp
+            <div class="row" style="padding-left: 20px;">
+              <div class="col-sm-4 text-black">Address: <%=data.customers.address %></div>
+              <div class="col-sm-4 text-black ">City: <%=data.customers.city %></div>
+              <div class="col-sm-4 text-black">Zip Code: <%=data.customers.zip %></div>
+            </div>
+            &nbsp
+            <div class="row" style="padding-left: 20px;">
+              <div class="col-sm-4 text-black">Notes: <%=data.customers.notes %></div>
+              <div class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></div>
+              <div class="col-sm-4 text-black">Country: <%=data.customers.country %></div>
+            </div>
+            &nbsp
+            <div class="row" style="padding-left: 20px;">
+              <div class="col-sm-4 text-black">State: <%=data.customers.state %></div>
+            </div>
+            <div class="col-sm-4 text-black"></div>
+          </div>
+        </div>
+      </div>
+      &nbsp
+      <div style="display: flex; flex-direction: row;">
+        <ul class="col-md-12 list-group" >
+        <h3>Invoice List</h3>
+        &nbsp
+        <ul id="invoiceEntry" style=" list-style-type: none; padding: 0; margin: 0;">
+          <% data.invoices[0].forEach(inv =>{ %> 
+          <li class="btn list-group-item list-group-item-action"><a href="/invoices/<%=inv._id%>" style="border: 1px solid #ddd; margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px; color: black; display: block;">Amount: $<%=inv.amount %> | Due: $<%=inv.dueDate %> | Paid status: <%=inv.paid %>  <% if (inv.paid == true){ %>
+              ✅
+              <% }%>
+              <% if (inv.paid == false){ %>
+              ❌
+              <% }%> </a>
                            
-                            </li>
-                            <form action="/invoices/fromcustomer/<%=inv._id%>/?_method=put" method="POST">
-                              <% if(inv.paid == false){ %>
-                              <button class="btn btn-primary btn-block" name="paid" value="true">Mark as Paid</button>
+          </li>
+          <form action="/invoices/fromcustomer/<%=inv._id%>/?_method=put" method="POST">
+          <% if(inv.paid == false){ %>
+          <button class="btn btn-primary btn-block" name="paid" value="true">Mark as Paid</button>
                              <% } %>
                              <% if(inv.paid == true){ %>
                               <button class="btn btn-primary btn-block" name="paid" value="false">Mark as Not Paid</button>
@@ -92,62 +77,40 @@
                             </form>
                 <% }) %> 
             </ul>
-        </ul>
-  
-              </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-                </div>
-                </div>
-                </div>
-
-
-                <div style="text-align:center; "> 
-                  <!-- Button to Open the Modal -->
-                  <button type="button" class="btn btn-primary"><a href="/customers/list" style="color:white; text-decoration: none;">Back to Customer List</a></button>
-                
-                
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
-                    Edit Customer
-                  </button>
-                  
-                  <!-- The Modal -->
-                  <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                  
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Edit Customer</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                  
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                         
-                          
-                          <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
-                    
-                            <div class="form-group">
-
-                              <label for="name">Name:</label>
-                              <input type="text" id="name" oninput="dontAllowWhiteSpace(this)" name="name" class="form-control" value="<%=data.customers.name%>">
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
-
-                                <label for="phone">Phone:</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<%=data.customers.phone%>">
-
-                                <label for="website">Website:</label>
-                                <input type="url" id="website" name="website" class="form-control" value="<%=data.customers.website%>">
-
-                                <label for="address">Address:</label>
-                                <input type="text" id="address" name="address" class="form-control" value="<%=data.customers.address%>">
-                                <label for="city">City:</label>
-                                <input type="text" id="city" name="city" class="form-control" value="<%=data.customers.city%>">
-                                <div style="display: block;">
-                                <label for="country">Country:</label>
-                                <select id="country" name="country" class="form-control">
+<div style="text-align:center; "> 
+  <button type="button" class="btn btn-primary"><a href="/customers/list" style="color:white; text-decoration: none;">Back to Customer List</a></button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >Edit Customer</button>
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Edit Customer</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+        <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" oninput="dontAllowWhiteSpace(this)" name="name" class="form-control" value="<%=data.customers.name%>">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="<%=data.customers.email%>">
+            <label for="phone">Phone:</label>
+            <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="<%=data.customers.phone%>">
+            <label for="website">Website:</label>
+            <input type="url" id="website" name="website" class="form-control" value="<%=data.customers.website%>">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" class="form-control" value="<%=data.customers.address%>">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" class="form-control" value="<%=data.customers.city%>">
+            <div style="display: block;">
+              <label for="country">Country:</label>
+                <select id="country" name="country" class="form-control">
                                   <option value="<%=data.customers.country%>" selected><%=data.customers.country%></option>
                                   <option value="Afganistan">Afghanistan</option>
                                   <option value="Albania">Albania</option>
@@ -395,154 +358,97 @@
                                   <option value="Zaire">Zaire</option>
                                   <option value="Zambia">Zambia</option>
                                   <option value="Zimbabwe">Zimbabwe</option>
-                               </select>
-                              </div>
-                       
-                                <label for="zip" style="display: inline;">Zip Code:</label>
-                                <input type="text" id="zip" name="zip" class="form-control" value="<%=data.customers.zip%>">
-
-                                <label for="state" style="display: inline;">State:</label>
-                                <input type="text" id="state" name="state" class="form-control" value="<%=data.customers.state%>">
-
-                                <label for="notes">Notes:</label>
-                                <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
-                                <label for="photo">Photo Url:</label>
-                                <input type="url" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
-                            </div>
-                            
-                            
-                        </div>
-                  
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <input type="submit" value="Update Customer" class="btn btn-primary" />
-                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                      </form>
-                        </div>
-                  
-                      </div>
-                    </div>
-                  </div>
-                
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal3" >
-                    Add New Invoice
-                    </button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >
-                     Delete Customer
-                    </button>
-                 
-                    
-                    
-                    </div>
-                    
-                    <div class="modal" id="myModal2">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                    
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                            <h4 class="modal-title">Are you sure you want to delete the customer and all of their invoices?</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                          </div>
-                    
-                          <!-- Modal body -->
-                          <div class="modal-body">
-                           
-                    
-                         <form action="/customers/<%=data.customers._id%>?_method=DELETE" method="POST" class="d-inline">
-                      <input type="submit" value="Yes" class="btn btn-danger" />
-                    </form>
-                    
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-                              
-                          </div>
-                    
-                          <!-- Modal footer -->
-                          <div class="modal-footer">
-                        </form>
-                          </div>
-                    
-                        </div>
-                      </div>
-                    </div>
-
-
-                   
-
-                    <div class="modal" id="myModal3">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                    
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                            <h4 class="modal-title">Add New Invoice</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                          </div>
-                    
-                          <!-- Modal body -->
-                          <div class="modal-body">
-                           
-                  
-                            <form action="<%= data.pageid %>/add-customerpage" method='POST'>
-                      
-                              <div class="form-group">
-                                  <label for="customer">Customer:</label>
-                  
-                                  <select name="customer" id="customer" class="form-control " required>
-                                    <option value="<%=data.customers.name%>"><%=data.customers.name%></option>
-                   
-                                  </select>
-  
-                                  <label for="amount">Amount:</label>
-  
-                                   <input type="number" step="0.01" class="form-control " id="amount" placeholder="Enter amount" oninput="dontAllowWhiteSpace(this)" value="" name="amount" required>
-  
-  
-                                  
-  
-                                  <label for="dueDate">Due Date:</label>
-                                  <input type="date" id="dueDate" name="dueDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
-  
-                                  <label for="invoiceDate" class="form-label " style="display:inline-block" required>Invoice Date:</label>        
-                                  <input type="date" id="invoiceDate" name="invoiceDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
-  
-                                  <label for="contactName">Contact Name:</label>
-                                  <input type="text" id="contactName" name="contactName" class="form-control" value="">
-                                  <label for="contactNumber">Contact Number:</label>
-  
-                                  <input type="tel" class="form-control" id="contactNumber" name="contactNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="">
-                                  <label for="billingAddress">Billing Address:</label>
-                                  <input type="text" id="billingAddress"name="billingAddress" class="form-control" value=""  oninput="dontAllowWhiteSpace(this)" >
-                                  <label for="invoiceLineItems">Invoice Line Items:</label>
-                                  <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="">
-                                  <label for="memo">Memo:</label>
-                                  <input type="text" id="memo" name="memo" class="form-control" value="">
-                                  <label for="paymentInfo" class="form-label ">Payment Information:</label>
-                                  <input type="text" class="form-control" id="paymentInfo" placeholder="Enter Payment Information" name="paymentInfo">
-                                  <label for="paid">Paid:</label>
-                                  <select name="paid" id="paid" class="form-control">
-                                    <option value="false">false</option>
-                                        <option value="true">true</option>
-                                      
-                                  </select>
-                              </div>
-                              
-                              
-                          </div>
-
-                    
-                          <!-- Modal footer -->
-                          <div class="modal-footer">
-                            <input type="submit" value="Add New Invoice" class="btn btn-primary" />
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </form>
-                          </div>
-                    
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  &nbsp
-                  &nbsp
-                  &nbsp
-                   &nbsp
+                </select>
+            </div>
+            <label for="zip" style="display: inline;">Zip Code:</label>
+            <input type="text" id="zip" name="zip" class="form-control" value="<%=data.customers.zip%>">
+            <label for="state" style="display: inline;">State:</label>
+            <input type="text" id="state" name="state" class="form-control" value="<%=data.customers.state%>">
+            <label for="notes">Notes:</label>
+            <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
+            <label for="photo">Photo Url:</label>
+            <input type="url" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" value="Update Customer" class="btn btn-primary" />
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal3" >Add New Invoice</button>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >Delete Customer</button>
+</div>      
+<div class="modal" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Are you sure you want to delete the customer and all of their invoices?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/customers/<%=data.customers._id%>?_method=DELETE" method="POST" class="d-inline">
+          <input type="submit" value="Yes" class="btn btn-danger" />
+        </form>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="myModal3">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Invoice</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form action="<%= data.pageid %>/add-customerpage" method='POST'>
+        <div class="form-group">
+          <label for="customer">Customer:</label>
+          <select name="customer" id="customer" class="form-control " required>
+          <option value="<%=data.customers.name%>"><%=data.customers.name%></option>
+          </select>
+          <label for="amount">Amount:</label>
+          <input type="number" step="0.01" class="form-control " id="amount" placeholder="Enter amount" oninput="dontAllowWhiteSpace(this)" value="" name="amount" required>
+          <label for="dueDate">Due Date:</label>
+          <input type="date" id="dueDate" name="dueDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
+          <label for="invoiceDate" class="form-label " style="display:inline-block" required>Invoice Date:</label>        
+          <input type="date" id="invoiceDate" name="invoiceDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
+          <label for="contactName">Contact Name:</label>
+          <input type="text" id="contactName" name="contactName" class="form-control" value="">
+          <label for="contactNumber">Contact Number:</label>
+          <input type="tel" class="form-control" id="contactNumber" name="contactNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="">
+          <label for="billingAddress">Billing Address:</label>
+          <input type="text" id="billingAddress"name="billingAddress" class="form-control" value=""  oninput="dontAllowWhiteSpace(this)" >
+          <label for="invoiceLineItems">Invoice Line Items:</label>
+          <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="">
+          <label for="memo">Memo:</label>
+          <input type="text" id="memo" name="memo" class="form-control" value="">
+          <label for="paymentInfo" class="form-label ">Payment Information:</label>
+          <input type="text" class="form-control" id="paymentInfo" placeholder="Enter Payment Information" name="paymentInfo">
+          <label for="paid">Paid:</label>
+          <select name="paid" id="paid" class="form-control">
+          <option value="false">false</option>
+          <option value="true">true</option>
+          </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Add New Invoice" class="btn btn-primary" />
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>         
+      </div>
+    </div>
+  </div>
+</div>
+&nbsp
+&nbsp
+&nbsp
+&nbsp

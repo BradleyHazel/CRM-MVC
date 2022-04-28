@@ -1,4 +1,3 @@
-// require the mongoose package from the connection pool
 const mongoose = require("../connection");
 
 const customerSchema = new mongoose.Schema({
@@ -20,5 +19,4 @@ const customerSchema = new mongoose.Schema({
 
 const Customer = mongoose.model("Customer", customerSchema);
 
-// export the newly created model
 module.exports = Customer;

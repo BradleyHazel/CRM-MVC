@@ -1,4 +1,3 @@
-// require the mongoose package from the connection pool
 const mongoose = require("../connection");
 
 const invoiceSchema = new mongoose.Schema({
@@ -14,10 +13,9 @@ const invoiceSchema = new mongoose.Schema({
   invoiceLineItems: { type: String },
   memo: { type: String },
   createdDate: { type: String },
-  paymentInfo: { type: String }
+  paymentInfo: { type: String },
 });
 
 const Invoice = mongoose.model("Invoice", invoiceSchema);
 
-// export the newly created model
 module.exports = Invoice;
