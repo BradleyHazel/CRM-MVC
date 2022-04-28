@@ -1,16 +1,17 @@
 <% // https://www.technicalkeeda.com/html-tutorials/all-countries-drop-down-list-in-html %>
 
 
-<div class="text-white"> Logged in as: <%= data.username %></div>
-
-<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-
-</nav>
+<ul class="navbar-nav">
+  <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+  
+  <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
+  </ul>
+  </nav>
 
 
 <div class="col-md-10 container p-5 my-5 bg-primary text-white">
   <div class="jumbotron">
-    <h3>Add Customer</h3>
+    <h3 style="padding-left: 20px;">Add Customer</h3>
 
     <form action='/customers/add' method='POST'>
 

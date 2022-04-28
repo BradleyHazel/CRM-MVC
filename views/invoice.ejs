@@ -1,16 +1,16 @@
 
-<div class="text-white"> Logged in as: <%= data.username %></div>
-
-<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-
-</nav>
+  <ul class="navbar-nav">
+    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    
+    <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
+    </ul>
+    </nav>
 <div class="container-fluid ">
 
-    <ul class="col-md-6 list">
-            
-                <h6>Selected Customer: <a href="/customers/<%=data.customer._id %>"><%=data.customer.name %></a></h6>
+  &nbsp;
+           
+                <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%=data.customer._id %>"><%=data.customer.name %></a></h6>
  
-</ul>
 
 
 
@@ -24,7 +24,7 @@
                       <div class="col-sm-10" style="display: inline-block">
                         <div style="display: inline">
                       <div class="row" style="padding-left: 20px;">
-                        <div class="col-sm-4 text-black ">Customer: <%=data.invoice.customer %></div>
+                        <div class="col-sm-4 text-black ">Customer: <a href="/customers/<%=data.customer._id %>"><%=data.invoice.customer %></a></div>
                         <div class="col-sm-4 text-black">Amount: <%=data.invoice.amount %></div>
                         <div class="col-sm-4 text-black">Due Date: <%=data.invoice.dueDate %></div>
                       </div>
@@ -43,14 +43,7 @@
                           ❌
                           <% }%> 
                         
-                          <form action="/invoices/<%=data.invoice._id%>/?_method=put" style="display:inline; padding-left: 5pxç;" method="POST">
-                            <% if(data.invoice.paid == false){ %>
-                            <button class="btn-sm btn-primary" name="paid" style="display:inline" value="true">Mark as Paid</button>
-                           <% } %>
-                           <% if(data.invoice.paid == true){ %>
-                            <button class="btn-sm btn-primary" style="display:inline" name="paid" value="false">Mark as Not Paid</button>
-                            <% } %>
-                          </form>
+                          
                         </div>
                         <div class="col-sm-4 text-black">Billing Address: <%=data.invoice.billingAddress %></div>
                         <div class="col-sm-4 text-black">Invoice Line Items: <%=data.invoice.invoiceLineItems %></div>
@@ -60,6 +53,8 @@
                       <div class="row" style="padding-left: 20px;">
                         <div class="col-sm-4 text-black">Memo: <%=data.invoice.memo %></div>
                         <div class="col-sm-4 text-black">Created Date: <%=data.invoice.createdDate %></div>
+
+                        <div class="col-sm-4 text-black">Payment Information: <%=data.invoice.paymentInfo %></div>
                         </div>
                         <div class="row" style="padding-top: 20px;"></div>
                         
@@ -83,6 +78,15 @@
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >
                     Edit invoice
                   </button>
+
+                  <form action="/invoices/<%=data.invoice._id%>/?_method=put" style="display:inline; padding-left: 5pxç;" method="POST">
+                    <% if(data.invoice.paid == false){ %>
+                    <button class="btn btn-primary" name="paid" style="display:inline" value="true">Mark as Paid</button>
+                   <% } %>
+                   <% if(data.invoice.paid == true){ %>
+                    <button class="btn btn-primary" style="display:inline" name="paid" value="false">Mark as Not Paid</button>
+                    <% } %>
+                  </form>
 
       
                   
@@ -139,6 +143,8 @@
                                 <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="<%=data.invoice.invoiceLineItems%>">
                                 <label for="memo">Memo:</label>
                                 <input type="text" id="memo" name="memo" class="form-control" value="<%=data.invoice.memo%>">
+                                <label for="paymentInfo" class="form-label text-black">Payment Information:</label>
+                                <input type="text" class="form-control" id="paymentInfo" value="<%=data.invoice.paymentInfo%>" name="paymentInfo">
                                 <label for="paid">Paid:</label>
                                 <select name="paid" id="paid" class="form-control text-black">
                                   <option value="<%=data.invoice.paid%>"><%=data.invoice.paid%></option>
@@ -148,6 +154,7 @@
                                         <option value="false">false</option>
                                         <%     } %>
                                 </select>
+      
                             </div>
                             
                             

@@ -1,18 +1,16 @@
 
-<div class="text-white"> Logged in as: <%= data.username %></div>
-
-<button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
-
-</nav>
+  <ul class="navbar-nav">
+    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    
+    <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
+    </ul>
+    </nav>
 <div class="container-fluid " >
+  &nbsp;
 
-    <ul class="col-md-6 list">
             
-                <h6>Selected Customer: <a href="/customers/<%= data.customers._id %>">
-                        <%=data.customers.name %></a>
-                <h6></h6>
- 
-</ul>
+                <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%= data.customers._id %>">
+                        <%=data.customers.name %></a></h6>
 
 <script>
   function dontAllowWhiteSpace(input){
@@ -21,8 +19,6 @@
       input.value = '';
       }
 </script>
-
-
 
           <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
 
@@ -492,23 +488,23 @@
                               <div class="form-group">
                                   <label for="customer">Customer:</label>
                   
-                                  <select name="customer" id="customer" class="form-control text-black" required>
+                                  <select name="customer" id="customer" class="form-control " required>
                                     <option value="<%=data.customers.name%>"><%=data.customers.name%></option>
                    
                                   </select>
   
                                   <label for="amount">Amount:</label>
   
-                                   <input type="number" step="0.01" class="form-control text-black" id="amount" placeholder="Enter amount" oninput="dontAllowWhiteSpace(this)" value="" name="amount" required>
+                                   <input type="number" step="0.01" class="form-control " id="amount" placeholder="Enter amount" oninput="dontAllowWhiteSpace(this)" value="" name="amount" required>
   
   
                                   
   
                                   <label for="dueDate">Due Date:</label>
-                                  <input type="date" id="dueDate" name="dueDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
+                                  <input type="date" id="dueDate" name="dueDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
   
                                   <label for="invoiceDate" class="form-label " style="display:inline-block" required>Invoice Date:</label>        
-                                  <input type="date" id="invoiceDate" name="invoiceDate" class="form-control text-black" value="" min="2000-01-01" max="2030-12-31" required>
+                                  <input type="date" id="invoiceDate" name="invoiceDate" class="form-control " value="" min="2000-01-01" max="2030-12-31" required>
   
                                   <label for="contactName">Contact Name:</label>
                                   <input type="text" id="contactName" name="contactName" class="form-control" value="">
@@ -521,8 +517,10 @@
                                   <input type="text" id="invoiceLineItems" name="invoiceLineItems" class="form-control" value="">
                                   <label for="memo">Memo:</label>
                                   <input type="text" id="memo" name="memo" class="form-control" value="">
+                                  <label for="paymentInfo" class="form-label ">Payment Information:</label>
+                                  <input type="text" class="form-control" id="paymentInfo" placeholder="Enter Payment Information" name="paymentInfo">
                                   <label for="paid">Paid:</label>
-                                  <select name="paid" id="paid" class="form-control text-black">
+                                  <select name="paid" id="paid" class="form-control">
                                     <option value="false">false</option>
                                         <option value="true">true</option>
                                       

@@ -14,6 +14,7 @@ const invoiceSchema = new mongoose.Schema({
   invoiceLineItems: { type: String },
   memo: { type: String },
   createdDate: { type: String },
+  paymentInfo: { type: String }
 });
 
 const Invoice = mongoose.model("Invoice", invoiceSchema);
