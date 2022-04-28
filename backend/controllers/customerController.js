@@ -17,6 +17,19 @@ router.get("/list", (req, res, next) => {
     .catch(next);
 });
 
+router.get("/logs", (req, res, next) => {
+  Log.find({ owner: (req.user._id? req.user._id : req.user.id)})
+    .then((logs) => {
+
+      
+      //logs.sort((a, b) => a.name.localeCompare(b.name));
+
+      let data = { logs: logs, username: (req.user._id? req.user.username : req.user.displayName) };
+      res.render(`logs`, { data });
+    })
+
+    .catch(next);
+});
 
 router.get("/", (req, res, next) => {
 

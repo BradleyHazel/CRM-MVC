@@ -10,7 +10,7 @@ function generateLog(reqBodyOwner,reqBody,message){
   let logdata = {owner:reqBodyOwner,timestamp:stamp,details:reqBody,action:message}
 
   Log.create(logdata).then(()=>{
-    console.log(logdata)
+
   })
 }
 
@@ -96,11 +96,12 @@ router.post("/add", (req, res) => {
 router.delete("/:invoiceId", (req, res, next) => {
 
   let owner = (req.user._id? req.user._id : req.user.id)
+  let details = req.params.invoiceId
   
   Invoice.findOneAndDelete(
     { _id: req.params.invoiceId, owner: owner },
     () => {
-      generateLog(owner,req.params.invoiceId,"Invoice deleted.")
+      generateLog(owner,details,"Invoice deleted.")
       res.redirect("/invoices/list");
     }
   ).catch(console.error);
