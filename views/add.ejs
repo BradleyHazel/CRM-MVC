@@ -27,14 +27,16 @@
           <input type="url" class="form-control" id="photo" placeholder="Enter photo URL" name="photo" style="display: inline;">
         </div>
         <div class="row col-md-4" style="display:inline-block; ">
-          <label for="email" class="form-label text-black" style="display:inline-block">Email:</label>
+          <label for="email" class="form-label text-black">Email:</label>
           <input type="email" class="form-control text-black" id="email"  placeholder="Enter email" name="email" style="display:inline">
           <label for="phone" class="form-label text-black">Phone:</label>
           <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-555-5555">
+          
           <label for="state" class="form-label text-black">State:</label>
           <input type="text" class="form-control" oninput="dontAllowWhiteSpace(this)" id="state" placeholder="Enter state" name="state">
-          <label for="notes" class="form-label text-black">Notes:</label>
-          <input type="notes" class="form-control" id="notes" placeholder="Enter notes" name="notes">
+          <label for="notes" class="form-label text-black" style="display: inline;">Notes:</label>
+          <input type="text" class="form-control" id="notes" placeholder="Enter notes" name="notes">
+
         </div>
         <div class="row col-md-4" style="display:inline-block">
           <label for="website" class="form-label text-black" style="display:inline-block">Website:</label>
@@ -295,7 +297,7 @@
       </div>
       <div class="mb-3 mt-3">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" style="margin-left:15px">Submit</button>
     </form>
   </div>
 </div>
