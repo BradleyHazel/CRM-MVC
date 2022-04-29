@@ -3,7 +3,7 @@
 </br>
 A customer relationship management tool with AR statistics and revenue projection built via Model-View-Controller architecture.
 
-**Application Link** [Sign up or login here](https://crm-mvc.herokuapp.com/login) 
+## Application Link: [Sign up or login here](https://crm-mvc.herokuapp.com/login) 
 
 
 ## Technology Used
