@@ -97,7 +97,7 @@
         <label for="paymentInfo">Payment Information:</label>
         <input type="text" class="form-control" id="paymentInfo" value="<%=data.invoice.paymentInfo%>" name="paymentInfo">
         <label for="paid">Paid:</label>
-        <select name="paid" id="paid" class="form-control text-black">
+        <select name="paid" id="paid" class="form-control ">
         <option value="<%=data.invoice.paid%>"><%=data.invoice.paid%></option>
         <% if(data.invoice.paid == false){   %>
           <option value="true">true</option>
