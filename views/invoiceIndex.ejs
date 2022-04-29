@@ -1,15 +1,15 @@
 
   <ul class="navbar-nav">
-    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    <nav class="nav-item text-white"> Logged in as: <%= data.username %></nav>
     
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
   </ul>
 </nav>
 <% //https://www.w3schools.com/howto/howto_js_filter_lists.asp %>
-  <div class="container-fluid ">
-    <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
-      <div class="jumbotron">
-        <div class="container-fluid row">
+  <main class="container-fluid ">
+    <article class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
+      <section class="jumbotron">
+        <section class="container-fluid row">
           <ul class="col-md-12 list-group" >
             <h4>Invoice List</h4>
             <input type="text" id="invoiceField" onkeyup="sortInvoiceList()" placeholder="Search for invoice by name, amount, due date, or paid status" style="  width: 100%; font-size: 16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px; ">
@@ -25,11 +25,11 @@
               <% }) %> 
             </ul>
           </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        </section>
+      </section>
+    </article>
+  </main>
+
 <script>
 function sortInvoiceList() {
 // Code from https://www.w3schools.com/howto/howto_js_filter_lists.asp

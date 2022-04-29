@@ -7,16 +7,14 @@
 <% let colors = ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#5b6eb9","#008ab8","#ffbe0a","#ff9999","#ffbaf9","#a9d93c","#0001f6","#d2ba4b","#ff6f69","#646464","#7cbb9e","#f5c600","#ff8282","#f97800","#8430c8","#60720f","#8536a5","#2fe0e0","#ffaa0e","#00bde7","#6441a4","#333333","#a6056f","#eccc6e","#256E96",'#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D','#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC','#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399','#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933','#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'] %> 
 <% // https://www.w3schools.com/ai/ai_regressions.asp %>
   <ul class="navbar-nav">
-    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    <nav class="nav-item text-white"> Logged in as: <%= data.username %></nav>
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
     </ul>
 </nav>
-<div class="container-fluid row">
-  <div class="col-sm-2">
+<main class="container-fluid row">
+  <aside class="col-sm-2">
     <ul class="list-group">
-      &nbsp
-      &nbsp
-      &nbsp
+     
       <h4 style="padding-top:11px; text-align:center">Customer List</h4>        
       <% data.customers.forEach(cust =>{ customerCountryArry.push(cust.country); if(true){ let selectedColor =  Math.floor(Math.random()*colors.length) ; customerNameArry.push(cust.name); invoiceAmountArry.push(cust.invoicetotal);  invoiceNumberArry.push(cust.invoicenumber) ; } %> 
       <div class="dropdown">
@@ -27,24 +25,24 @@
       </div>
     <% }) %> 
     </ul>
-  </div>
-    <div class="col-md-10 container p-5 my-5 bg-primary text-white " style="margin-top:none">
-      <div class="jumbotron" style="padding-top:0%" >
+  </aside>
+    <section class="col-md-10 container p-5 my-5 bg-primary text-white " style="margin-top:none">
+      <section class="jumbotron" style="padding-top:0%" >
         &nbsp
         &nbsp
         <h4 style="text-align:center">Customer Dashboard</h4>
         <p class="text-black">Customer Total: <%=data.customers.length%></p>
         <p class="text-black">Invoice Total: <%=data.invoices[0].length%></p>
-        <div style="text-align:center; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 10px">
+        <figure style="text-align:center; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 10px">
         <canvas id="myChart" style="width:100%;max-width:900px; display: inline;" ></canvas>
         <canvas id="myChart2" style="width:100%;max-width:900px; display: inline; "></canvas>
         <canvas id="myChart3" style="width:100%;max-width:900px; display: inline; "></canvas>
         <canvas id="myChart4" style="width:100%;max-width:900px; display: inline; "></canvas>
-        <div id="myPlot" style="width:100%;max-width:900px; display: inline;"></div>      
-      </div>
-    </div>
-  </div>
-</div>
+        <figure id="myPlot" style="width:100%;max-width:900px; display: inline;"></figure>      
+      </figure>
+    </section>
+  </section>
+</main>
 <% customerNameString = customerNameArry.join()%>
 <% while(customerNameString.includes(" ")){customerNameString= customerNameString.replaceAll(" ", "_")} %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>

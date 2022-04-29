@@ -194,13 +194,15 @@ app.post("/forgot", function (req, res) {
         sanitizedUser.setPassword(temp, function () {
           sanitizedUser.save();
 
-          var transporter = nodemailer.createTransport({
-            service: "gmail",
+          let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            port: 465,
+            secure: true,
             auth: {
-              user: process.env.DEV_EMAIL,
-              pass: process.env.DEV_PASSWORD,
-            },
-          });
+                user: process.env.DEV_EMAIL,
+                pass: process.env.DEV_PASSWORD,
+            }
+        });
 
           var mailOptions = {
             from: process.env.DEV_EMAIL,

@@ -1,56 +1,55 @@
   <ul class="navbar-nav">
-    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    <nav class="nav-item text-white"> Logged in as: <%= data.username %></nav>
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
   </ul>
 </nav>
-  <div class="container-fluid ">
+  <main class="container-fluid ">
     &nbsp;
     <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%=data.customer._id %>"><%=data.customer.name %></a></h6>
-    <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
+    <article class="col-md-10 container-fluid p-5 my-5 bg-primary text-white">
       <div class="jumbotron">
         <h3 >Invoice Details</h3>
         <div style="display: flex; flex-direction: row;">
-          <div class="col-sm-10" style="display: inline-block">
-            <div style="display: inline">
-              <div class="row" style="padding-left: 20px;">
-                <div class="col-sm-4 text-black ">Customer: <a href="/customers/<%=data.customer._id %>"><%=data.invoice.customer %></a></div>
-                <div class="col-sm-4 text-black">Amount: <%=data.invoice.amount %></div>
-                <div class="col-sm-4 text-black">Due Date: <%=data.invoice.dueDate %></div>
-              </div>
+          <section class="col-sm-10" style="display: inline-block">
+            <section style="display: inline">
               &nbsp
-              <div class="row" style="padding-left: 20px;">
-                <div class="col-sm-4 text-black">Invoice Date: <%=data.invoice.invoiceDate %></div>
-                <div class="col-sm-4 text-black ">Contact Name: <%=data.invoice.contactName %></div>
-                <div class="col-sm-4 text-black">Contact Number: <%=data.invoice.contactNumber %></div>
-              </div>
+              <aside class="row" style="padding-left: 20px;">
+                <p class="col-sm-4 text-black ">Customer: <a href="/customers/<%=data.customer._id %>"><%=data.invoice.customer %></a></p>
+                <p class="col-sm-4 text-black">Amount: <%=data.invoice.amount %></p>
+                <p class="col-sm-4 text-black">Due Date: <%=data.invoice.dueDate %></p>
+              </aside>
               &nbsp
-              <div class="row" style="padding-left: 20px;">
-                <div class="col-sm-4 text-black">Paid: <%=data.invoice.paid %><% if (data.invoice.paid== true){ %>
+              <aside class="row" style="padding-left: 20px;">
+                <p class="col-sm-4 text-black">Invoice Date: <%=data.invoice.invoiceDate %></p>
+                <p class="col-sm-4 text-black ">Contact Name: <%=data.invoice.contactName %></p>
+                <p class="col-sm-4 text-black">Contact Number: <%=data.invoice.contactNumber %></p>
+              </aside>
+              &nbsp
+              <aside class="row" style="padding-left: 20px;">
+                <p class="col-sm-4 text-black">Paid: <%=data.invoice.paid %><% if (data.invoice.paid== true){ %>
                  ✅
                  <% }%>
                  <% if (data.invoice.paid == false){ %>
                  ❌
                  <% }%> 
-                </div>
-                <div class="col-sm-4 text-black">Billing Address: <%=data.invoice.billingAddress %></div>
-                <div class="col-sm-4 text-black">Invoice Line Items: <%=data.invoice.invoiceLineItems %></div>
-              </div>
-              <div class="row" style="padding-top: 20px;"></div>
+                </p>
+                <p class="col-sm-4 text-black">Billing Address: <%=data.invoice.billingAddress %></p>
+                <p class="col-sm-4 text-black">Invoice Line Items: <%=data.invoice.invoiceLineItems %></p>
+              </aside>             
               &nbsp
-              <div class="row" style="padding-left: 20px;">
-                <div class="col-sm-4 text-black">Memo: <%=data.invoice.memo %></div>
-                <div class="col-sm-4 text-black">Created Date: <%=data.invoice.createdDate %></div>
-                <div class="col-sm-4 text-black">Payment Information: <%=data.invoice.paymentInfo %></div>
-              </div>
-              <div class="row" style="padding-top: 20px;"></div>
-            </div>
-          </div>
+              <section class="row" style="padding-left: 20px;">
+                <p class="col-sm-4 text-black">Memo: <%=data.invoice.memo %></p>
+                <p class="col-sm-4 text-black">Created Date: <%=data.invoice.createdDate %></p>
+                <p class="col-sm-4 text-black">Payment Information: <%=data.invoice.paymentInfo %></p>
+              </section>
+              <section class="row" style="padding-top: 20px;"></section>
+            </section>
+          </section>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div style="text-align:center; "> 
+    </article>
+  </main>
+<article style="text-align:center; "> 
   <button type="button" class="btn btn-primary"><a href="/invoices/list" style="color:white; text-decoration: none;">Back to invoice List</a></button>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >Edit invoice</button>
   <form action="/invoices/<%=data.invoice._id%>/?_method=put" style="display:inline; padding-left: 5pxç;" method="POST">
@@ -61,16 +60,16 @@
   <button class="btn btn-primary" style="display:inline" name="paid" value="false">Mark as Not Paid</button>
   <% } %>
   </form>
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+<article class="modal" id="myModal">
+  <nav class="modal-dialog">
+    <section class="modal-content">
+      <nav class="modal-header">
         <h4 class="modal-title">Edit invoice</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
+      </nav>
+      <section class="modal-body">
       <form action="/invoices/<%=data.invoice._id%>/?_method=put" method="POST">
-      <div class="form-group">
+      <section class="form-group " style="text-align: left;">
         <label for="customer">Customer:</label>
         <select name="customer" id="customer" class="form-control" required>
         <option value="<%=data.invoice.customer%>"><%=data.invoice.customer%></option>
@@ -105,38 +104,32 @@
           <option value="false">false</option>
         <%     } %>
         </select>
-      </div>
-    </div>
-  <div class="modal-footer">
+      </section>
+    </section>
+  <section class="modal-footer">
     <input type="submit" value="Update invoice" class="btn btn-primary" />
     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
     </form>
-  </div>
-  </div>
-</div>
-</div>
+  </section>
+  </section>
+</nav>
+</article>
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >Delete invoice</button>
-</div>
-<div class="modal" id="myModal2">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+</article>
+<article class="modal" id="myModal2">
+  <nav class="modal-dialog">
+    <section class="modal-content">
+      <section class="modal-header">
         <h4 class="modal-title">Are you sure you want to delete the invoice?</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-    <div class="modal-body">
+      </section>
+    <section class="modal-body">
       <form action="/invoices/<%=data.invoice._id%>?_method=DELETE" method="POST" class="d-inline">
       <input type="submit" value="Yes" class="btn btn-danger" />
       </form>
       <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-    </div>
-        <div class="modal-footer">
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  </nav>
+</article>
 &nbsp
 &nbsp
 &nbsp

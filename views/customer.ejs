@@ -1,9 +1,9 @@
   <ul class="navbar-nav">
-    <div class="nav-item text-white"> Logged in as: <%= data.username %></div>
+    <nav class="nav-item text-white"> Logged in as: <%= data.username %></nav>
     <button class="btn btn-primary nav-item"><a class="nav-link text-white" href="/logout">Logout</a></button>
   </ul>
 </nav>
-<div class="container-fluid " >
+<main class="container-fluid " >
   &nbsp;    
   <h6 style="padding-left:115px;">Selected Customer: <a href="/customers/<%= data.customers._id %>">
     <%=data.customers.name %></a></h6>
@@ -14,46 +14,45 @@
       input.value = '';
       }
 </script>
-  <div class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
+  <section class="col-md-10 container-fluid p-5 my-5 bg-primary text-white ">
     <div class="jumbotron">
       <h3 >Customer Details </h3>
       &nbsp
-      <div style="display: flex; flex-direction: row;">
-        <div class="card col-sm-2" style="width:100px" >
+      <section style="display: flex; flex-direction: row;">
+        <figure class="card col-sm-2" style="width:100px" >
           <img class="card-img-top"  src="<%= (data.customers.photo ? data.customers.photo : 'https://www.w3schools.com/bootstrap5/img_avatar1.png') %>" alt="Card image">
-            <div class="card-body" >
+            <aside class="card-body" >
               <p class="card-title text-black"> Name: <%=data.customers.name %></p>
-            </div>
-        </div>
-        <div class="col-sm-10" style="display: inline-block">
-          <div style="display: inline">
-            <div class="row" style="padding-left: 20px;">
-              <div class="col-sm-4 text-black ">Email: <%=data.customers.email %></div>
-              <div class="col-sm-4 text-black">Phone: <%=data.customers.phone %></div>
-              <div class="col-sm-4 text-black">Website: <a href="<%=data.customers.website %>"><%=data.customers.website %></a></div>
-            </div>
+            </aside>
+          </figure>
+        <figure class="col-sm-10" style="display: inline-block">
+          <section style="display: inline">
+            <section class="row" style="padding-left: 20px;">
+              <p class="col-sm-4 text-black ">Email: <%=data.customers.email %></p>
+              <p class="col-sm-4 text-black">Phone: <%=data.customers.phone %></p>
+              <p class="col-sm-4 text-black">Website: <a href="<%=data.customers.website %>"><%=data.customers.website %></a></p>
+            </section>
             &nbsp
-            <div class="row" style="padding-left: 20px;">
-              <div class="col-sm-4 text-black">Address: <%=data.customers.address %></div>
-              <div class="col-sm-4 text-black ">City: <%=data.customers.city %></div>
-              <div class="col-sm-4 text-black">Zip Code: <%=data.customers.zip %></div>
-            </div>
+            <section class="row" style="padding-left: 20px;">
+              <p class="col-sm-4 text-black">Address: <%=data.customers.address %></p>
+              <p class="col-sm-4 text-black ">City: <%=data.customers.city %></p>
+              <p class="col-sm-4 text-black">Zip Code: <%=data.customers.zip %></p>
+            </section>
             &nbsp
-            <div class="row" style="padding-left: 20px;">
-              <div class="col-sm-4 text-black">Notes: <%=data.customers.notes %></div>
-              <div class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></div>
-              <div class="col-sm-4 text-black">Country: <%=data.customers.country %></div>
-            </div>
+            <section class="row" style="padding-left: 20px;">
+              <p class="col-sm-4 text-black">Notes: <%=data.customers.notes %></p>
+              <p class="col-sm-4 text-black">Created date: <%=data.customers.createdDate %></p>
+              <p class="col-sm-4 text-black">Country: <%=data.customers.country %></p>
+            </section>
             &nbsp
-            <div class="row" style="padding-left: 20px;">
-              <div class="col-sm-4 text-black">State: <%=data.customers.state %></div>
-            </div>
-            <div class="col-sm-4 text-black"></div>
-          </div>
-        </div>
-      </div>
+            <section class="row" style="padding-left: 20px;">
+              <p class="col-sm-4 text-black">State: <%=data.customers.state %></p>
+            </section>
+          </section>
+        </figure>
+      </section>
       &nbsp
-      <div style="display: flex; flex-direction: row;">
+      <section style="display: flex; flex-direction: row;">
         <ul class="col-md-12 list-group" >
         <h3>Invoice List</h3>
         &nbsp
@@ -79,23 +78,22 @@
             </ul>
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div style="text-align:center; "> 
+      </section>
+    </section>
+
+<section style="text-align:center; "> 
   <button type="button" class="btn btn-primary"><a href="/customers/list" style="color:white; text-decoration: none;">Back to Customer List</a></button>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" >Edit Customer</button>
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+  <article class="modal" id="myModal">
+    <nav class="modal-dialog">
+      <section class="modal-content">
+        <nav class="modal-header">
             <h4 class="modal-title">Edit Customer</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
+        </nav>
+        <section class="modal-body">
         <form action="/customers/<%=data.customers._id%>/?_method=put" method="POST">
-          <div class="form-group">
+          <section class="form-group" style="text-align: left;">
             <label for="name">Name:</label>
             <input type="text" id="name" oninput="dontAllowWhiteSpace(this)" name="name" class="form-control" value="<%=data.customers.name%>">
             <label for="email">Email:</label>
@@ -368,48 +366,45 @@
             <input type="text" id="notes" name="notes" class="form-control" value="<%=data.customers.notes%>">
             <label for="photo">Photo Url:</label>
             <input type="url" id="photo" name="photo" class="form-control" value="<%=data.customers.photo%>">
-            </div>
-          </div>
-          <div class="modal-footer">
+            </section>
+          </section>
+          <section class="modal-footer">
             <input type="submit" value="Update Customer" class="btn btn-primary" />
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </form>
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </section>
+      </nav>
+    </article>
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal3" >Add New Invoice</button>
   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2" >Delete Customer</button>
-</div>      
-<div class="modal" id="myModal2">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+</section>      
+<article class="modal" id="myModal2">
+  <nav class="modal-dialog">
+    <section class="modal-content">
+      <nav class="modal-header">
         <h4 class="modal-title">Are you sure you want to delete the customer and all of their invoices?</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
+      </nav>
+      <section class="modal-body">
         <form action="/customers/<%=data.customers._id%>?_method=DELETE" method="POST" class="d-inline">
           <input type="submit" value="Yes" class="btn btn-danger" />
         </form>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
-      </div>
-      <div class="modal-footer">
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal" id="myModal3">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+      </section>
+    </section>
+  </nav>
+</article>
+<article class="modal" id="myModal3">
+  <nav class="modal-dialog">
+    <section class="modal-content">
+      <nav class="modal-header">
         <h4 class="modal-title">Add New Invoice</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
+      </nav>
+      <section class="modal-body">
         <form action="<%= data.pageid %>/add-customerpage" method='POST'>
-        <div class="form-group">
+        <section class="form-group">
           <label for="customer">Customer:</label>
           <select name="customer" id="customer" class="form-control " required>
           <option value="<%=data.customers.name%>"><%=data.customers.name%></option>
@@ -437,17 +432,17 @@
           <option value="false">false</option>
           <option value="true">true</option>
           </select>
-          </div>
-        </div>
-        <div class="modal-footer">
+          </section>
+        </section>
+        <section class="modal-footer">
             <input type="submit" value="Add New Invoice" class="btn btn-primary" />
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </form>
-        </div>         
-      </div>
-    </div>
-  </div>
-</div>
+        </section>         
+      </section>
+    </nav>
+  </article>
+</main>
 &nbsp
 &nbsp
 &nbsp
