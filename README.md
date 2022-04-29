@@ -130,6 +130,7 @@ The username or Google name is displayed at the top of the page. All creations, 
 - Better more descriptive logs.
 - More interactive and customizable charts.
 - Support image uploading
+- Add more SSO Options
 
 
 ## Resources Used
