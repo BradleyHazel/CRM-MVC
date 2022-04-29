@@ -3,6 +3,11 @@ A customer relationship management tool with statistics and revenue projection.
 
 **Application Link** [Sign up or login here](https://crm-mvc.herokuapp.com/login)
 
+## Technology Used
+- Languages: JavaScript, HTML 5, CSS,
+- Database: MongoDB
+- Notable Frameworks/Dependencies: Mongoose, Express.JS, Chart.js, Passport.JS, Nodemailer, Bootswatch, Regression.JS, EJS, Express rate limit, and Express Session,  
+
 ## Project Description
 
 The application's main use is to enable the user to keep track of customer information as well as keep track of open and paid invoices for those customers.
@@ -45,11 +50,6 @@ New customers and invoices can be added from the Add a Customer and Add an invoi
 The username or Google name is displayed at the top of the page. All creations, updates, and deletions are logged for future tracking on the logs page.
 
 ![CRM 2022-04-28 at 8 08 51 PM](https://user-images.githubusercontent.com/27248034/165866799-04152343-59fd-4e16-8b1d-f48c14823589.jpg)
-
-## Technology Used
-- Languages: JavaScript, HTML 5, CSS,
-- Database: MongoDB
-- Notable Frameworks/Dependencies: Mongoose, Express.JS, Chart.js, Passport.JS, Nodemailer, Bootswatch, Regression.JS, EJS, Express rate limit, and Express Session,  
   
 ## User Stories
   
