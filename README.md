@@ -114,6 +114,10 @@ The username or Google name is displayed at the top of the page. All creations, 
     });
     }
 
+### Wireframes
+
+<img width="889" alt="image" src="https://media.git.generalassemb.ly/user/41021/files/bca3ef80-b81f-11ec-9d3a-4030e0d4d426">
+
 ## User Stories
   
 - As a user I want to be able to create a new customer and store them in the database
