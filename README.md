@@ -9,7 +9,7 @@ A customer relationship management tool with AR statistics and revenue projectio
 ## Technology Used
 - Languages: JavaScript, HTML5, CSS
 - Database: MongoDB
-- Notable Frameworks/Dependencies: [Mongoose](https://mongoosejs.com/) , [Express.JS](https://expressjs.com/), [Chart.JS](https://www.chartjs.org/), [Passport.JS](https://www.passportjs.org/), [Nodemailer](https://nodemailer.com/about/), [Bootswatch](https://bootswatch.com/), [Regression.JS](https://www.npmjs.com/package/regression), [EJS](https://ejs.co/), [Express rate limit](https://www.npmjs.com/package/express-rate-limit), and [Express Session](https://www.npmjs.com/package/express-session).
+- Notable Frameworks/Dependencies: [Mongoose](https://mongoosejs.com/) , [Express.JS](https://expressjs.com/), [Chart.JS](https://www.chartjs.org/), [Passport.JS](https://www.passportjs.org/), [Nodemailer](https://nodemailer.com/about/), [Plotly](https://plotly.com/),[Bootswatch](https://bootswatch.com/), [Regression.JS](https://www.npmjs.com/package/regression), [EJS](https://ejs.co/), [Express rate limit](https://www.npmjs.com/package/express-rate-limit), and [Express Session](https://www.npmjs.com/package/express-session).
 
 ## Project Description
 
